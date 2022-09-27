@@ -11,6 +11,18 @@
     {
       "name": "mainability_HelloWorld",
       "value": "Hello World"
+    },
+    {
+      "name": "tablist_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "tablist_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_TabList",
+      "value": "entry_TabList"
     }
   ]
 }

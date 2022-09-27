@@ -12,7 +12,7 @@
   "module": {
     "package": "com.shop",
     "name": ".MyApplication",
-    "mainAbility": "com.shop.MainAbility",
+    "mainAbility": "com.shop.TabList",
     "deviceType": [
       "phone"
     ],
@@ -34,10 +34,10 @@
             ]
           }
         ],
-        "name": "com.shop.MainAbility",
-        "description": "$string:mainability_description",
+        "name": "com.shop.TabList",
+        "description": "$string:tablist_description",
         "icon": "$media:icon",
-        "label": "$string:entry_MainAbility",
+        "label": "$string:entry_TabList",
         "launchType": "standard",
         "orientation": "unspecified",
         "visible": true,

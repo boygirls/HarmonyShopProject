@@ -1,13 +1,13 @@
 package com.shop;
 
-import com.shop.slice.MainAbilitySlice;
+import com.shop.slice.TabListSlice;
 import ohos.aafwk.ability.Ability;
 import ohos.aafwk.content.Intent;
 
-public class MainAbility extends Ability {
+public class TabList extends Ability {
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
-        super.setMainRoute(MainAbilitySlice.class.getName());
+        super.setMainRoute(TabListSlice.class.getName());
     }
 }
