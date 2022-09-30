@@ -17,10 +17,14 @@
         ohos:layout_alignment="center"/>
 
     <ScrollView
+        ohos:id="$+id:shopcart_list_scrollview"
+        ohos:below="$id:shopcart_title_text"
         ohos:height="match_parent"
-        ohos:width="match_parent">
+        ohos:width="match_parent"
+        ohos:bottom_margin="90vp">
 
         <TableLayout
+            ohos:id="$+id:shopcart_list_table"
             ohos:height="match_content"
             ohos:width="match_parent"/>
 
