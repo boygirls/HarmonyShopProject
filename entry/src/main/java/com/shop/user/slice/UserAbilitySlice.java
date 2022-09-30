@@ -1,4 +1,4 @@
-package com.shop.user.slice.slice;
+package com.shop.user.slice;
 
 import com.shop.ResourceTable;
 import ohos.aafwk.ability.AbilitySlice;

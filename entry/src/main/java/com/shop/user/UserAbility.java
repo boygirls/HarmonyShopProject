@@ -1,6 +1,6 @@
-package com.shop.user.slice;
+package com.shop.user;
 
-import com.shop.user.slice.slice.UserAbilitySlice;
+import com.shop.user.slice.UserAbilitySlice;
 import ohos.aafwk.ability.Ability;
 import ohos.aafwk.content.Intent;
 

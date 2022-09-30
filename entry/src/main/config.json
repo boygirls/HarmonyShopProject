@@ -34,7 +34,7 @@
         "type": "page"
       },
       {
-        "name": "com.shop.user.slice.UserAbility",
+        "name": "com.shop.user.UserAbility",
         "description": "$string:userability_description",
         "icon": "$media:icon",
         "label": "$string:entry_UserAbility",
