@@ -23,6 +23,30 @@
     {
       "name": "entry_TabList",
       "value": "entry_TabList"
+    },
+    {
+      "name": "userability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "userability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_UserAbility",
+      "value": "entry_UserAbility"
+    },
+    {
+      "name": "welcomeability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "welcomeability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_WelcomeAbility",
+      "value": "entry_WelcomeAbility"
     }
   ]
 }

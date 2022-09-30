@@ -24,6 +24,27 @@
     },
     "abilities": [
       {
+        "name": "com.shop.TabList",
+        "description": "$string:tablist_description",
+        "icon": "$media:icon",
+        "label": "$string:entry_TabList",
+        "launchType": "standard",
+        "orientation": "unspecified",
+        "visible": true,
+        "type": "page"
+      },
+      {
+        "name": "com.shop.user.slice.UserAbility",
+        "description": "$string:userability_description",
+        "icon": "$media:icon",
+        "label": "$string:entry_UserAbility",
+        "launchType": "standard",
+        "orientation": "unspecified",
+        "visible": true,
+        "type": "page"
+      },
+      {
+        "name": "com.shop.WelcomeAbility",
         "skills": [
           {
             "entities": [
@@ -34,15 +55,22 @@
             ]
           }
         ],
-        "name": "com.shop.TabList",
-        "description": "$string:tablist_description",
+        "description": "$string:welcomeability_description",
         "icon": "$media:icon",
-        "label": "$string:entry_TabList",
+        "label": "$string:entry_WelcomeAbility",
         "launchType": "standard",
         "orientation": "unspecified",
         "visible": true,
         "type": "page"
       }
-    ]
+    ],
+    "metaData": {
+      "customizeData": [
+        {
+          "name": "hwc-theme",
+          "value": "androidhwext:style/Theme.Emui.Light.NoTitleBar"
+        }
+      ]
+    }
   }
 }
