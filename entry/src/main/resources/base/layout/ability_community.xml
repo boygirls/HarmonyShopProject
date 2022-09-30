@@ -3,11 +3,24 @@
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
     ohos:height="match_parent"
     ohos:width="match_parent"
-    ohos:orientation="vertical">
+    ohos:orientation="vertical"
+    ohos:background_element="#ffffff"
+    ohos:padding="5vp">
 
     <Text
-        ohos:height="match_parent"
-        ohos:width="match_parent"
+        ohos:height="match_content"
+        ohos:width="match_content"
         ohos:text="社区"/>
+
+    <Button
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:text="尝试"/>
+
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:text="傻逼"/>
+
 
 </DirectionalLayout>
