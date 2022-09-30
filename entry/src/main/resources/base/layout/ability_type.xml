@@ -22,7 +22,8 @@
         <ListContainer
             ohos:height="match_parent"
             ohos:width="180vp"
-            ohos:background_element="#cccc">
+            
+            ohos:background_element="#11000000">
 
 
         </ListContainer>
