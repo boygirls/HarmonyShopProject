@@ -2,16 +2,13 @@
 <StackLayout
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
     ohos:height="match_parent"
-    ohos:width="match_parent"
-    ohos:alignment="center"
-    ohos:orientation="vertical">
+    ohos:width="match_parent">
 
     <PageSlider
         ohos:id="$+id:page_slider"
         ohos:height="match_parent"
         ohos:width="match_parent"
-        ohos:layout_alignment="horizontal_center"/>
-
+        ohos:layout_alignment="bottom"/>
 
     <DirectionalLayout
         ohos:height="40vp"
@@ -21,44 +18,44 @@
         ohos:weight="5">
 
         <Image
-            ohos:height="match_content"
-            ohos:width="match_content"
+            ohos:height="30vp"
+            ohos:width="30vp"
             ohos:image_src="$media:index"
-            ohos:scale_mode="clip_center"
+            ohos:scale_mode="zoom_center"
             ohos:clip_alignment="center"
             ohos:weight="1"/>
 
         <Image
-            ohos:height="match_content"
-            ohos:width="match_content"
+            ohos:height="30vp"
+            ohos:width="30vp"
             ohos:image_src="$media:list"
             ohos:layout_alignment="center"
-            ohos:scale_mode="clip_center"
+            ohos:scale_mode="zoom_center"
             ohos:clip_alignment="center"
             ohos:weight="1"/>
 
         <Image
-            ohos:height="match_content"
-            ohos:width="match_content"
+            ohos:height="30vp"
+            ohos:width="30vp"
             ohos:image_src="$media:word"
-            ohos:scale_mode="clip_center"
+            ohos:scale_mode="zoom_center"
             ohos:layout_alignment="center"
             ohos:clip_alignment="center"
             ohos:weight="1"/>
 
         <Image
-            ohos:height="match_content"
-            ohos:width="match_content"
+            ohos:height="30vp"
+            ohos:width="30vp"
             ohos:image_src="$media:shop"
-            ohos:scale_mode="clip_center"
+            ohos:scale_mode="zoom_center"
             ohos:layout_alignment="center"
             ohos:clip_alignment="center"
             ohos:weight="1"/>
 
         <Image
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:scale_mode="clip_center"
+            ohos:height="30vp"
+            ohos:width="30vp"
+            ohos:scale_mode="zoom_center"
             ohos:image_src="$media:user"
             ohos:layout_alignment="center"
             ohos:clip_alignment="center"
@@ -71,15 +68,14 @@
         ohos:height="36vp"
         ohos:width="match_parent"
         ohos:layout_alignment="bottom"
-        ohos:normal_text_color="#999999"
+        ohos:normal_text_color="#FFFFFFFF"
         ohos:orientation="horizontal"
-        ohos:selected_tab_indicator_color="#FFEF0772"
+        ohos:selected_tab_indicator_color="#FF3179E3"
         ohos:selected_tab_indicator_height="2vp"
-        ohos:selected_text_color="#afaafa"
+        ohos:selected_text_color="#FFFDFFFF"
         ohos:tab_length="140vp"
         ohos:text_alignment="center"
         ohos:text_size="20fp">
-
     </TabList>
 
 </StackLayout>

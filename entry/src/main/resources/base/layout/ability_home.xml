@@ -1,208 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DirectionalLayout
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
-    ohos:height="500vp"
+    ohos:height="match_parent"
     ohos:width="match_parent"
-    ohos:background_element="#ffffff"
-    ohos:orientation="vertical"
-    ohos:padding="5vp">
+    ohos:orientation="vertical">
 
-    <!--    轮播图-->
-    <PageSlider
-        ohos:id="$+id:index_image_pageSlider"
-        ohos:height="200vp"
-        ohos:width="match_parent"
-        ohos:background_element="$graphic:background_index_image"
-        ohos:top_margin="5vp">
-
-        <Text
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:text="轮播图"/>
-
-        <Text
-            ohos:height="match_content"
-            ohos:width="match_parent"
-            ohos:text="轮播图"/>
-
-        <Text
-            ohos:height="match_content"
-            ohos:width="match_parent"
-            ohos:text="轮播图"/>
-    </PageSlider>
-
-    <Text
-        ohos:height="match_content"
-        ohos:width="match_content"
-        ohos:text="看得见不"/>
-
-    <Text
-        ohos:height="match_content"
-        ohos:width="match_content"
-        ohos:text="看得见不"/>
-
-    <Text
-        ohos:height="match_content"
-        ohos:width="match_content"
-        ohos:text="看得见不"/>
-
-    <Text
-        ohos:height="match_content"
-        ohos:width="match_content"
-        ohos:text="看得见不"/>
-
-    <Text
-        ohos:height="match_content"
-        ohos:width="match_content"
-        ohos:text="看得见不"/>
-
-    <Text
-        ohos:height="match_content"
-        ohos:width="match_content"
-        ohos:text="看得见不"/>
-
-
-    <!-- 分类列表-->
-    <TableLayout
-        ohos:height="160vp"
-        ohos:width="match_parent"
-        ohos:column_count="5"
-        ohos:padding="18vp"
-        ohos:top_margin="5vp">
-
-        <Image
-            ohos:height="60vp"
-            ohos:width="60vp"
-            ohos:image_src="$media:taobao"
-            ohos:scale_mode="clip_center"/>
-
-        <Image
-            ohos:height="60vp"
-            ohos:width="60vp"
-            ohos:image_src="$media:taobao"
-            ohos:scale_mode="clip_center"
-            />
-
-        <Image
-            ohos:height="60vp"
-            ohos:width="60vp"
-
-            ohos:image_src="$media:taobao"
-            ohos:scale_mode="clip_center"/>
-
-        <Image
-            ohos:height="60vp"
-            ohos:width="60vp"
-            ohos:image_src="$media:taobao"
-            ohos:scale_mode="clip_center"/>
-
-        <Image
-            ohos:height="60vp"
-            ohos:width="60vp"
-            ohos:image_src="$media:taobao"
-            ohos:scale_mode="clip_center"/>
-
-        <Image
-            ohos:height="60vp"
-            ohos:width="60vp"
-            ohos:image_src="$media:taobao"
-            ohos:scale_mode="clip_center"/>
-
-        <Image
-            ohos:height="60vp"
-            ohos:width="60vp"
-            ohos:image_src="$media:taobao"
-            ohos:scale_mode="clip_center"/>
-
-        <Image
-            ohos:height="60vp"
-            ohos:width="60vp"
-            ohos:image_src="$media:taobao"
-            ohos:scale_mode="clip_center"/>
-
-        <Image
-            ohos:height="60vp"
-            ohos:width="60vp"
-            ohos:image_src="$media:taobao"
-            ohos:scale_mode="clip_center"/>
-
-        <Image
-            ohos:height="60vp"
-            ohos:width="60vp"
-            ohos:image_src="$media:taobao"
-            ohos:scale_mode="clip_center"/>
-
-    </TableLayout>
-
-    <!--商品列表-->
-    <TableLayout
-        ohos:id="$+id:index_product_list"
-        ohos:height="match_content"
-        ohos:width="match_parent"
-        ohos:column_count="2">
+    <ScrollView
+        ohos:height="match_parent"
+        ohos:width="match_parent">
 
         <DirectionalLayout
             xmlns:ohos="http://schemas.huawei.com/res/ohos"
-            ohos:height="220vp"
-            ohos:width="170vp"
-            ohos:background_element="$graphic:background_index_image"
-            ohos:margin="3vp"
+            ohos:height="match_content"
+            ohos:width="match_parent"
             ohos:orientation="vertical">
 
-            <!--显示商品的组件-->
-            <Image
+            <Text
+                ohos:height="40vp"
+                ohos:width="match_parent"
+                ohos:layout_alignment="center"
+                ohos:text="首页"
+                ohos:text_alignment="center"
+                ohos:text_color="#FF7AF3CC"
+                ohos:text_size="30vp"/>
+
+            <!--    轮播图-->
+            <PageSlider
+                ohos:id="$+id:index_image_pageSlider"
                 ohos:height="150vp"
-                ohos:width="150vp"
-                ohos:clip_alignment="center"
-                ohos:image_src="$media:taobao"
-                ohos:scale_mode="clip_center"/>
+                ohos:width="match_parent"
+                ohos:top_margin="5vp"/>
 
-            <Text
+            <!-- 分类列表-->
+            <TableLayout
+                ohos:id="$+id:index_types"
+                ohos:height="160vp"
+                ohos:width="match_parent"
+                ohos:column_count="5"
+                ohos:padding="15vp"
+                ohos:top_margin="15vp"
+                ohos:top_padding="5vp">
+            </TableLayout>
+
+            <!--商品列表-->
+            <TableLayout
+                ohos:id="$+id:index_product_list"
                 ohos:height="match_content"
                 ohos:width="match_parent"
-                ohos:padding="2vp"
-                ohos:text="商品名称"
-                ohos:text_size="10fp"/>
-
-            <Text
-                ohos:height="match_content"
-                ohos:width="match_parent"
-                ohos:padding="2vp"
-                ohos:text="￥ 13.3"
-                ohos:text_color="#ff383d"
-                ohos:text_size="10fp"/>
+                ohos:column_count="2">
+            </TableLayout>
         </DirectionalLayout>
-
-        <DirectionalLayout
-            xmlns:ohos="http://schemas.huawei.com/res/ohos"
-            ohos:height="220vp"
-            ohos:width="170vp"
-            ohos:background_element="$graphic:background_index_image"
-            ohos:margin="3vp"
-            ohos:orientation="vertical">
-            <!--显示商品的组件-->
-
-            <Image
-                ohos:height="150vp"
-                ohos:width="150vp"
-                ohos:clip_alignment="center"
-                ohos:image_src="$media:taobao"
-                ohos:scale_mode="clip_center"/>
-
-            <Text
-                ohos:height="match_content"
-                ohos:width="match_parent"
-                ohos:padding="2vp"
-                ohos:text="商品名称"
-                ohos:text_size="10fp"/>
-
-            <Text
-                ohos:height="match_content"
-                ohos:width="match_parent"
-                ohos:padding="2vp"
-                ohos:text="￥ 13.3"
-                ohos:text_color="#ff383d"
-                ohos:text_size="10fp"/>
-        </DirectionalLayout>
-    </TableLayout>
+    </ScrollView>
 </DirectionalLayout>
