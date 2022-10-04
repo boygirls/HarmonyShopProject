@@ -6,6 +6,7 @@ import com.shop.ResourceTable;
 import com.shop.TabListProvider;
 import com.shop.home.adapter.IndexImagePageSliderProvider;
 import com.shop.home.model.ResultBeanData;
+import com.shop.home.model.ResultVO;
 import com.shop.util.Constants;
 import com.shop.util.LoadUrlImageUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -16,6 +17,7 @@ import ohos.agp.components.*;
 import ohos.app.dispatcher.task.TaskPriority;
 import ohos.hiviewdfx.HiLog;
 import ohos.hiviewdfx.HiLogLabel;
+import ohos.javax.xml.transform.Result;
 import okhttp3.Call;
 
 
@@ -209,6 +211,11 @@ public class TabListSlice extends AbilitySlice {
     }
     /*初始化购物车列表*/
     private void initShopCart(PageSlider slider) {
+        //加载当前用户的购物车信息，显示到id=shopcart_list_table的TableLayout布局中
+//        getGlobalTaskDispatcher(TaskPriority.DEFAULT).asyncDispatch(()->{
+//            ResultVO resultVO = gson.fromJson(s, ResultVO.class);
+//        });
+
         //绑定“结算”按钮的点击事件
         Button btn = (Button) pageSlider.findComponentById(ResourceTable.Id_account_button);
         btn.setClickedListener(component -> {

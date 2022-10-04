@@ -47,6 +47,22 @@
     {
       "name": "entry_WelcomeAbility",
       "value": "entry_WelcomeAbility"
+    },
+    {
+      "name": "loginability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "loginability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_LoginAbility",
+      "value": "entry_LoginAbility"
+    },
+    {
+      "name": "malldataability_description",
+      "value": "hap sample empty provider"
     }
   ]
 }
