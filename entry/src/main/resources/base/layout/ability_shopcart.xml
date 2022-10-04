@@ -19,6 +19,7 @@
     <ScrollView
         ohos:id="$+id:shopcart_list_scrollview"
         ohos:below="$id:shopcart_title_text"
+        ohos:above="$id:account_button"
         ohos:height="match_parent"
         ohos:width="match_parent"
         ohos:bottom_margin="90vp">
@@ -44,7 +45,7 @@
             <Image
                 ohos:height="74vp"
                 ohos:width="74vp"
-                ohos:image_src=" "
+                ohos:image_src="$media:default_head"
                 ohos:margin="3vp"/>
 
             <Text

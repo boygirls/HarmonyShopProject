@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical"
+    ohos:background_element="#FFEFEEEE"
+    ohos:padding="5vp">
+
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text="订单结算"
+        ohos:text_size="15fp"
+        ohos:text_color="#999999"/>
+
+    <!--显示默认收货地址-->
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:orientation="horizontal"
+        ohos:background_element="#ffffff"
+        ohos:padding="5vp">
+
+        <DirectionalLayout
+            ohos:height="match_content"
+            ohos:width="290vp"
+            ohos:orientation="vertical">
+
+            <Text
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:text="张三"
+                ohos:text_size="15fp"/>
+
+            <Text
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:text="福建省厦门市集美区天马路288号厦门华厦学院"
+                ohos:multiple_lines="true"
+                ohos:top_margin="5vp"
+                ohos:text_size="12fp"
+                ohos:text_color="#999999"/>
+
+        </DirectionalLayout>
+
+        <Button
+            ohos:height="match_content"
+            ohos:width="40vp"
+            ohos:left_margin="10vp"
+            ohos:padding="5vp"
+            ohos:text="修改"
+            ohos:text_size="12fp"
+            ohos:text_color="#ffffff"
+            ohos:background_element="#999999"/>
+        
+    </DirectionalLayout>
+
+    <!--选择支付方式-->
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:padding="20vp">
+
+        <RadioContainer
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:orientation="horizontal">
+
+            <RadioButton
+                ohos:height="35vp"
+                ohos:width="match_content"
+                ohos:text="微信"
+                ohos:text_size="15fp"/>
+
+            <RadioButton
+                ohos:height="35vp"
+                ohos:width="match_content"
+                ohos:text="支付宝"
+                ohos:text_size="15fp"
+                ohos:left_margin="30vp"/>
+
+            <RadioButton
+                ohos:height="35vp"
+                ohos:width="match_content"
+                ohos:text="银联"
+                ohos:text_size="15fp"
+                ohos:left_margin="30vp"/>
+
+        </RadioContainer>
+
+    </DirectionalLayout>
+
+    <!--订单包含的商品的信息-->
+    <TableLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:top_margin="5vp">
+
+        <DirectionalLayout
+            ohos:height="80vp"
+            ohos:width="match_parent"
+            ohos:top_margin="5vp"
+            ohos:orientation="horizontal"
+            ohos:background_element="#fffff"
+            ohos:alignment="vertical_center">
+
+            <Image
+                ohos:height="74vp"
+                ohos:width="74vp"
+                ohos:image_src="$media:default_head"
+                ohos:margin="3vp"/>
+
+            <Text
+                ohos:height="match_content"
+                ohos:width="100vp"
+                ohos:text_size="10fp"
+                ohos:text_alignment="left"
+                ohos:text="XXXXX"
+                ohos:multiple_lines="true"
+                ohos:padding="5vp"/>
+
+            <Text
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:text_size="12fp"
+                ohos:text_alignment="left"
+                ohos:text="￥ 13.80"
+                ohos:padding="5vp"/>
+
+            <Text
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:text_size="12fp"
+                ohos:text_alignment="left"
+                ohos:text="2"
+                ohos:padding="5vp"/>
+
+            <Text
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:text_size="12fp"
+                ohos:text_alignment="left"
+                ohos:text="￥ 27.60"
+                ohos:padding="5vp"/>
+
+        </DirectionalLayout>
+
+    </TableLayout>
+
+    <!--订单信息-->
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:padding="20vp"
+        ohos:top_margin="5vp"
+        ohos:alignment="right"
+        ohos:orientation="horizontal">
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="订单总金额："
+            ohos:text_size="18fp"/>
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="￥ 27.60"
+            ohos:text_color="red"
+            ohos:text_size="20fp"/>
+
+    </DirectionalLayout>
+
+    <!--订单提交按钮-->
+    <Button
+        ohos:id="$+id:order_button"
+        ohos:align_parent_bottom="true"
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:text="提交订单"
+        ohos:text_color="#ffffff"
+        ohos:text_size="13fp"
+        ohos:padding="10vp"
+        ohos:background_element="#ff383b"
+        ohos:top_margin="15vp"/>
+
+</DirectionalLayout>
