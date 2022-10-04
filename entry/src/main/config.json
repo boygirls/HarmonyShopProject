@@ -7,12 +7,30 @@
       "name": "1.0.0"
     }
   },
+
   "deviceConfig": {
+    "default": {
+      "keepAlive": true,
+      "network": {
+        "cleartextTraffic": true
+      }
+    }
   },
   "module": {
     "package": "com.shop",
     "name": ".MyApplication",
     "mainAbility": "com.shop.TabList",
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.GET_NETWORK_INFO"
+      },
+      {
+        "name": "ohos.permission.SET_NETWORK_INFO"
+      },
+      {
+        "name": "ohos.permission.INTERNET"
+      }
+    ],
     "deviceType": [
       "phone"
     ],

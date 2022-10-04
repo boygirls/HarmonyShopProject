@@ -6,9 +6,13 @@
     ohos:orientation="vertical">
 
     <Text
-        ohos:height="match_parent"
+        ohos:height="40vp"
         ohos:width="match_parent"
-        ohos:text="分类"/>
+        ohos:text="分类"
+        ohos:text_size="30vp"
+        ohos:text_color="#FF7AF3CC"
+        ohos:text_alignment="center"
+        ohos:layout_alignment="center"/>
 
 
     <DirectionalLayout

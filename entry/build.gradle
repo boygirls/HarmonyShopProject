@@ -21,7 +21,9 @@ dependencies {
     testImplementation 'junit:junit:4.13.1'
     ohosTestImplementation 'com.huawei.ohos.testkit:runner:2.0.0.400'
 
-    implementation 'com.zhy:okhttputils:2.6.2'
+    implementation files('libs/okhttputils-2_6_2.jar')
+    implementation 'com.alibaba:fastjson:1.2.54'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.google.code.gson:gson:2.2.4'
 }
 decc {
