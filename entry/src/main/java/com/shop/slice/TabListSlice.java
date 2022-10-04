@@ -207,8 +207,14 @@ public class TabListSlice extends AbilitySlice {
 
     private void initCommunity(PageSlider slider) {
     }
-
+    /*初始化购物车列表*/
     private void initShopCart(PageSlider slider) {
+        //绑定“结算”按钮的点击事件
+        Button btn = (Button) pageSlider.findComponentById(ResourceTable.Id_account_button);
+        btn.setClickedListener(component -> {
+            Intent intent = new Intent();
+            present(new OrderAbilitySlice(),intent);
+        });
     }
 
     private void initUser(PageSlider slider) {
