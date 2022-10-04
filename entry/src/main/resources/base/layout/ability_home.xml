@@ -14,23 +14,20 @@
             ohos:height="match_content"
             ohos:width="match_parent"
             ohos:orientation="vertical">
-
             <Text
                 ohos:height="40vp"
                 ohos:width="match_parent"
                 ohos:layout_alignment="center"
                 ohos:text="首页"
                 ohos:text_alignment="center"
-                ohos:text_color="#FF7AF3CC"
+                ohos:text_color="#FF3E86F3"
                 ohos:text_size="30vp"/>
-
             <!--    轮播图-->
             <PageSlider
                 ohos:id="$+id:index_image_pageSlider"
                 ohos:height="150vp"
                 ohos:width="match_parent"
                 ohos:top_margin="5vp"/>
-
             <!-- 分类列表-->
             <TableLayout
                 ohos:id="$+id:index_types"
@@ -39,15 +36,16 @@
                 ohos:column_count="5"
                 ohos:padding="15vp"
                 ohos:top_margin="15vp"
-                ohos:top_padding="5vp">
+                ohos:top_padding="5vp"
+                ohos:left_margin="20vp">
             </TableLayout>
-
             <!--商品列表-->
             <TableLayout
                 ohos:id="$+id:index_product_list"
                 ohos:height="match_content"
                 ohos:width="match_parent"
-                ohos:column_count="2">
+                ohos:column_count="2"
+                ohos:left_margin="20vp">
             </TableLayout>
         </DirectionalLayout>
     </ScrollView>

@@ -8,40 +8,34 @@
     <Text
         ohos:height="40vp"
         ohos:width="match_parent"
+        ohos:layout_alignment="center"
         ohos:text="分类"
-        ohos:text_size="30vp"
-        ohos:text_color="#FF7AF3CC"
         ohos:text_alignment="center"
-        ohos:layout_alignment="center"/>
+        ohos:text_color="#FF7AF3CC"
+        ohos:text_size="30vp"/>
 
 
     <DirectionalLayout
         ohos:height="match_parent"
         ohos:width="match_parent"
+        ohos:orientation="horizontal"
         ohos:padding="2vp"
-        ohos:top_margin="5vp"
-        ohos:orientation="horizontal">
-<!--        左侧分类布局-->
+        ohos:top_margin="5vp">
+        <!--        左侧分类布局-->
 
-        <ListContainer
-            ohos:height="match_parent"
-            ohos:width="180vp"
-            
-            ohos:background_element="#11000000">
-
-
-        </ListContainer>
-
-<!--        右侧二级分类-->
         <TableLayout
+            ohos:id="$+id:type_Container"
             ohos:height="match_parent"
-            ohos:width="match_parent"
-            ohos:background_element="#e9e">
-
-
+            ohos:width="100vp">
         </TableLayout>
 
-
+        <!--        右侧二级分类-->
+        <TableLayout
+            ohos:id="$+id:type_TabLayout"
+            ohos:height="match_parent"
+            ohos:width="match_parent"
+            ohos:background_element="#FF545854">
+        </TableLayout>
     </DirectionalLayout>
 
 
