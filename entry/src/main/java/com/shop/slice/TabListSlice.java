@@ -6,18 +6,23 @@ import com.shop.ResourceTable;
 import com.shop.TabListProvider;
 import com.shop.home.adapter.IndexImagePageSliderProvider;
 import com.shop.home.model.ResultBeanData;
-import com.shop.home.model.ResultVO;
 import com.shop.util.Constants;
+import com.shop.util.DataBaseUtil;
 import com.shop.util.LoadUrlImageUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 import ohos.aafwk.ability.AbilitySlice;
+import ohos.aafwk.ability.DataAbilityHelper;
+import ohos.aafwk.ability.DataAbilityRemoteException;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.*;
 import ohos.app.dispatcher.task.TaskPriority;
+import ohos.data.dataability.DataAbilityPredicates;
+import ohos.data.resultset.ResultSet;
+import ohos.global.resource.Resource;
 import ohos.hiviewdfx.HiLog;
 import ohos.hiviewdfx.HiLogLabel;
-import ohos.javax.xml.transform.Result;
+import ohos.utils.net.Uri;
 import okhttp3.Call;
 
 
@@ -38,14 +43,23 @@ public class TabListSlice extends AbilitySlice {
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_tab_lists);
-        initComponent();
-        SelectedListener();
 
-        // 设置默认起始页
-        tabList.selectTabAt(0);
-        initIndex(pageSlider);
+        String token = DataBaseUtil.getValue("token", this);
+        if(token != null){
 
-        HiLog.warn(LABEL, "Failed to visit %{private}s, reason:%{public}d.");
+            initComponent();
+            SelectedListener();
+
+            // 设置默认起始页
+            tabList.selectTabAt(0);
+            initIndex(pageSlider);
+
+            HiLog.warn(LABEL, "Failed to visit %{private}s, reason:%{public}d.");
+        }else {
+            //如果没有token，则表示用户没有登录，跳转到LoginAbilitySlice
+            present(new LoginAbilitySlice(),new Intent());
+        }
+
     }
 
     private void initComponent() {
