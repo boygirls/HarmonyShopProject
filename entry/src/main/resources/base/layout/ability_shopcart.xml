@@ -40,6 +40,7 @@
             <Checkbox
                 ohos:height="25vp"
                 ohos:width="25vp"
+                ohos:text_size="20fp"
                 ohos:check_element="$graphic:checkbox_check_element"/>
 
             <Image
