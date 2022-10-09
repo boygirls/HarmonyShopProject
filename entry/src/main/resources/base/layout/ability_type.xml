@@ -34,7 +34,8 @@
             ohos:id="$+id:type_TabLayout"
             ohos:height="match_parent"
             ohos:width="match_parent"
-            ohos:background_element="#FF545854">
+            ohos:background_element="#FFE2E7E2"
+            ohos:column_count="3">
         </TableLayout>
     </DirectionalLayout>
 

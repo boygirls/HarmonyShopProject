@@ -1,15 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<DirectionalLayout
+<StackLayout
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
     ohos:height="match_parent"
     ohos:width="match_parent"
     ohos:orientation="vertical">
 
-    <Text
-        ohos:id="$+id:textDetail"
-        ohos:height="match_parent"
+    <DirectionalLayout
+        ohos:height="60vp"
         ohos:width="match_parent"
-        ohos:text_size="40vp"/>
+        ohos:padding="10vp"
+        ohos:orientation="horizontal"
+        ohos:layout_alignment="top"
+
+        >
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:element_left="$media:top_bar_left_back"
+            ohos:weight="1"
+            ohos:padding="10vp"
+            ohos:text=""/>
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="商品详情"
+            ohos:text_size="20fp"
+            ohos:weight="1"/>
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:element_right="$media:icon_more"
+            ohos:weight="1"
+            ohos:padding="10vp"
+            ohos:text=""/>
+
+    </DirectionalLayout>
+
+    <ScrollView
+        ohos:height="match_content"
+        ohos:width="match_parent">
+        <DirectionalLayout
+            ohos:height="match_parent"
+            ohos:width="match_parent">
+
+            <Image
+                ohos:id="$+id:tv_good_info_img"
+                ohos:height="350vp"
+                ohos:width="match_parent"
+                ohos:image_src="$media:content"
+                ohos:scale_mode="clip_center"
+                />
+
+            <Text
+                ohos:id="$+id:tv_good_info_name"
+                ohos:height="match_content"
+                ohos:width="match_parent"
+                ohos:text_color="#323427"
+                ohos:text_size="15fp"
+                ohos:top_margin="15vp"
+                ohos:text="【预售】《来年就交给你啦》珍藏画册 限量礼盒版"/>
+
+            <Text
+                ohos:id="$+id:tv_good_info_desc"
+                ohos:height="match_content"
+                ohos:width="match_parent"
+                ohos:text_color="#FF353532"
+                ohos:text_size="15fp"
+                ohos:top_margin="15vp"
+                ohos:text="预售截止10月15日，预售期为限量礼盒版，包括特制木盒x1、画集x1、邮票x1套、书签x1、贴纸x1、信封x1、礼盒特"
+                ohos:multiple_lines="true"
+                ohos:max_height="3"/>
+            <Text
+                ohos:id="$+id:tv_good_info_price"
+                ohos:height="match_content"
+                ohos:width="match_parent"
+                ohos:text_color="#FFEF084F"
+                ohos:left_padding="10vp"
+                ohos:text_size="20fp"
+                ohos:top_margin="15vp"
+                ohos:text="￥150.00"/>
 
 
-</DirectionalLayout>
+            <Text
+                ohos:height="12vp"
+                ohos:width="match_parent"
+                ohos:background_element="#FFE5E7E7"/>
+            <Text
+                ohos:height="25vp"
+                ohos:width="match_parent"
+                ohos:text="由邮政发货"
+                ohos:left_padding="10vp"
+                ohos:text_size="20fp"/>
+
+            <Text
+                ohos:height="12vp"
+                ohos:width="match_parent"
+                ohos:top_margin="10vp"
+                ohos:background_element="#FFE5E7E7"/>
+
+            <Text
+                ohos:height="35vp"
+                ohos:width="match_parent"
+                ohos:text="请选择款式"
+                ohos:left_padding="15vp"
+                ohos:element_right="$media:home_arrow_right"
+                ohos:text_size="25fp"/>
+            <Text
+                ohos:height="12vp"
+                ohos:width="match_parent"
+                ohos:top_margin="10vp"
+                ohos:background_element="#FFE5E7E7"/>
+
+            <Text
+                ohos:height="25vp"
+                ohos:width="match_parent"
+                ohos:text="提示：普通商品享有质量问题7天退货，签收后3个工作日内可换货。其他特殊商品（如手办）的售后以页面说明为准"
+                ohos:text_size="25fp"/>
+
+            <Text
+                ohos:height="12vp"
+                ohos:width="match_parent"
+                ohos:top_margin="10vp"
+                ohos:background_element="#FFE5E7E7"/>
+
+            <Text
+                ohos:height="25vp"
+                ohos:width="match_parent"
+                ohos:text="图文详情"
+                ohos:text_size="25fp"/>
+        </DirectionalLayout>
+    </ScrollView>
+
+
+    
+    <DirectionalLayout
+        ohos:height="60vp"
+        ohos:width="match_parent"
+        ohos:orientation="horizontal"
+        ohos:layout_alignment="bottom"
+        ohos:background_element="$graphic:detail_bottom"
+        >
+
+        <Text
+            ohos:height="30vp"
+            ohos:width="30vp"
+            ohos:text="联系客服"
+            ohos:element_top="$media:icon_callserver_unpressed"
+            ohos:text_color="#393b3e"
+            ohos:text_alignment="center"
+            ohos:layout_alignment="center"
+            ohos:weight="1"
+            />
+
+        <Text
+            ohos:height="30vp"
+            ohos:width="30vp"
+            ohos:text="收藏"
+            ohos:element_top="$media:good_uncollected"
+            ohos:text_color="#393b3e"
+            ohos:layout_alignment="center"
+            ohos:text_alignment="center"
+            ohos:weight="1"
+            />
+        <Text
+            ohos:height="30vp"
+            ohos:width="30vp"
+            ohos:text="购物车"
+            ohos:element_top="$media:icon_good_detail_cart"
+            ohos:text_color="#393b3e"
+            ohos:text_alignment="center"
+            ohos:layout_alignment="center"
+            ohos:weight="1"
+            />
+
+        <Button
+            ohos:id="$+id:tv_good_info_submit"
+            ohos:height="30vp"
+            ohos:width="30vp"
+            ohos:text="加入购物车"
+            ohos:text_alignment="center"
+            ohos:background_element="red"
+            ohos:weight="2"/>
+    </DirectionalLayout>
+
+
+</StackLayout>

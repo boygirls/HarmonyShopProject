@@ -24,6 +24,8 @@ public class LoginAbilitySlice extends AbilitySlice {
         Button submitBtn = (Button) findComponentById(ResourceTable.Id_login_btn);
         submitBtn.setClickedListener(component -> {
             TaskDispatcher globalTaskDispatcher = getGlobalTaskDispatcher(TaskPriority.DEFAULT);
+
+            //TODO 本地数据库访问。
             globalTaskDispatcher.asyncDispatch(()->{
                 //点击登录按钮，将账号和密码提交到用户认证接口
                 String urlString = "http://47.97.11.185:8080//user/login?username="+tf1.getText()+"&password="+tf2.getText();

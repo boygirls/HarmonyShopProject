@@ -1,5 +1,6 @@
 package com.shop.home.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -368,7 +369,7 @@ public class ResultBeanData {
             }
         }
 
-        public static class HotInfoBean {
+        public static class HotInfoBean implements Serializable {
             /**
              * cover_price : 159.00
              * figure : /1477984921265.jpg

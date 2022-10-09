@@ -16,6 +16,8 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.*;
+import ohos.agp.utils.Color;
+import ohos.agp.window.dialog.ToastDialog;
 import ohos.app.dispatcher.task.TaskPriority;
 import ohos.hiviewdfx.HiLog;
 import ohos.hiviewdfx.HiLogLabel;
@@ -24,6 +26,9 @@ import okhttp3.Call;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
+import static com.shop.util.LoadUrlImageUtils.loadImage;
 
 public class TabListSlice extends AbilitySlice {
 
@@ -38,14 +43,14 @@ public class TabListSlice extends AbilitySlice {
      */
     private ResultBeanData.ResultBean resultBean;
 
-
     // 临时数据
-    private  List<GoodsBean> goodsShopCart;
+    private  List<GoodsBean> goodsShopCart = new ArrayList<>();
 
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_tab_lists);
+
         initComponent();
         SelectedListener();
 
@@ -56,8 +61,10 @@ public class TabListSlice extends AbilitySlice {
         initSHopcartData();
     }
 
+    /**
+     * 创建购物车假数据
+     */
     private void initSHopcartData() {
-
         for ( int i = 0; i < 8; i++){
             GoodsBean goodsBean = new GoodsBean();
             goodsBean.setProduct_id(i + "");
@@ -69,6 +76,9 @@ public class TabListSlice extends AbilitySlice {
 
     }
 
+    /**
+     * 初始化监听
+     */
     private void initComponent() {
         pageSlider = (PageSlider) findComponentById(ResourceTable.Id_page_slider);
         tabList = (TabList) findComponentById(ResourceTable.Id_tab_list);
@@ -76,6 +86,9 @@ public class TabListSlice extends AbilitySlice {
         initPageSlider();
     }
 
+    /**
+     * 初始化页面
+     */
     private void initPageSlider() {
         ArrayList<Integer> layoutFileIds = new ArrayList<>();
         layoutFileIds.add(ResourceTable.Layout_ability_home);
@@ -115,7 +128,6 @@ public class TabListSlice extends AbilitySlice {
                 // 获取点的菜单的索引
                 int position = tab.getPosition();
                 pageSlider.setCurrentPage(position);
-
                 HiLog.info(LABEL, "" + position);
                 switch (position) {
                     case 0:
@@ -136,8 +148,6 @@ public class TabListSlice extends AbilitySlice {
                 }
 
             }
-
-
             @Override
             public void onUnselected(TabList.Tab tab) {
             }
@@ -147,19 +157,14 @@ public class TabListSlice extends AbilitySlice {
             }
         });
 
-
         // 列表切换事件监听
         pageSlider.addPageChangedListener(new PageSlider.PageChangedListener() {
             @Override
             public void onPageSliding(int i, float v, int i1) {
-
             }
-
             @Override
             public void onPageSlideStateChanged(int i) {
-
             }
-
             @Override
             public void onPageChosen(int i) {
                 // 参数i表示当前pageSlider的索引
@@ -168,7 +173,6 @@ public class TabListSlice extends AbilitySlice {
                 }
             }
         });
-
     }
 
     @Override
@@ -183,7 +187,6 @@ public class TabListSlice extends AbilitySlice {
 
     // 初始化首页
     private void initIndex(PageSlider slider) {
-
         getGlobalTaskDispatcher(TaskPriority.DEFAULT).asyncDispatch(() -> {
             String url = Constants.HOME_URL;
             OkHttpUtils
@@ -219,6 +222,8 @@ public class TabListSlice extends AbilitySlice {
                     });
         });
 
+
+
         //DirectionalLayout componentById = (DirectionalLayout) slider.findComponentById(ResourceTable.Id_product);
 //        componentById.setClickedListener(component -> {
 //            Intent intent = new Intent();
@@ -227,15 +232,15 @@ public class TabListSlice extends AbilitySlice {
 //        });
     }
 
-
+    /**
+     * 初始化社区页面
+     * @param slider
+     */
     private void initCommunity(PageSlider slider) {
     }
+
     /*初始化购物车列表*/
     private void initShopCart(PageSlider slider) {
-
-
-
-
         //绑定“结算”按钮的点击事件
         Button btn = (Button) pageSlider.findComponentById(ResourceTable.Id_account_button);
         btn.setClickedListener(component -> {
@@ -244,27 +249,27 @@ public class TabListSlice extends AbilitySlice {
         });
     }
 
+    /**
+     * 初始化用户界面
+     * @param slider
+     */
     private void initUser(PageSlider slider) {
+
     }
 
 
+    // 请求网址的集合
     private String[] titles = new String[]{"小裙子", "上衣", "下装", "外套", "配件", "包包", "装扮", "居家宅品", "办公文具", "数码周边", "游戏专区"};
+    private String[] urls = new String[]{Constants.SKIRT_URL, Constants.JACKET_URL, Constants.PANTS_URL, Constants.OVERCOAT_URL,
+            Constants.ACCESSORY_URL, Constants.BAG_URL, Constants.DRESS_UP_URL, Constants.HOME_PRODUCTS_URL, Constants.STATIONERY_URL,
+            Constants.DIGIT_URL, Constants.GAME_URL};
     /**
      * 分类页面初始化
      * @param slider
      */
     private void initType(PageSlider slider) {
-        getUITaskDispatcher().asyncDispatch(() -> {
-            TableLayout cont = (TableLayout) findComponentById(ResourceTable.Id_type_Container);
-            for (int i = 0; i <titles.length; i++) {
-                DirectionalLayout cpt = (DirectionalLayout) LayoutScatter.getInstance(this).parse(ResourceTable.Layout_type_text, null, false);
-                Text text = (Text) cpt.findComponentById(ResourceTable.Id_item_index);
-                text.setText(titles[i]);
-                cont.addComponent(cpt);
-            }
-        });
 
-
+        // 发送网络请求
         getGlobalTaskDispatcher(TaskPriority.DEFAULT).asyncDispatch(()->{
             OkHttpUtils
                     .get()
@@ -274,6 +279,7 @@ public class TabListSlice extends AbilitySlice {
                     .execute(new StringCallback() {
                         @Override
                         public void onError(Call call, Exception e, int i) {
+                            new ToastDialog(getContext()).setText("网络开小差了，请稍后再试");
                             HiLog.info(LABEL, "请求失败" + e.toString());
                         }
                         @Override
@@ -287,11 +293,12 @@ public class TabListSlice extends AbilitySlice {
                                         TypeBean typeBean = gson.fromJson(response, TypeBean.class);
                                         result = typeBean.getResult();
                                         // 处理类型页得到的数据
-                                        typeProcessData();
+                                        typeProcessData(slider);
                                     }
                                     break;
                                 case 101:
                                     HiLog.info(LABEL,"type页面初始化有问题");
+                                    new ToastDialog(getContext()).setText("网络开小差了，请稍后再试");
                                     break;
                             }
                         }
@@ -302,7 +309,113 @@ public class TabListSlice extends AbilitySlice {
     /**
      * 处理类型页面得到的数据
      */
-    private void typeProcessData() {
+    private void typeProcessData(PageSlider slider) {
+
+        DirectionalLayout[] fact = new DirectionalLayout[titles.length];
+        TableLayout container = (TableLayout) findComponentById(ResourceTable.Id_type_TabLayout);
+
+        // 右边一级列表渲染
+        getUITaskDispatcher().asyncDispatch(() -> {
+            TableLayout cont = (TableLayout) findComponentById(ResourceTable.Id_type_Container);
+            for (int i = 0; i <titles.length; i++) {
+                DirectionalLayout cpt = (DirectionalLayout) LayoutScatter.getInstance(this).parse(ResourceTable.Layout_type_text, null, false);
+                Text text = (Text) cpt.findComponentById(ResourceTable.Id_item_index);
+                text.setText(titles[i]);
+                cont.addComponent(cpt);
+                // 每显示一个一级分类就存一个fact
+                fact[i] = cpt;
+                // 默认第一个分类为红色
+                if(i == 0){
+                    text.setTextColor(new Color(Color.rgb(255,0x38,0x3b)));
+                }
+            }
+
+            // 监听一级分类的点击事件，当点击一级分类
+//            for (int i = 0; i< fact.length; i++){
+//                DirectionalLayout fct = fact[i];
+//                // 点击一个一级菜单，将所有的一级菜单变为黑色
+//                fct.setClickedListener(component -> {
+//
+//                    for (int j = 0; j<fact.length; j++){
+//                        Text text = (Text) fact[j].findComponentById(ResourceTable.Id_item_index);
+//                        text.setTextColor(Color.BLACK);
+//                    }
+//                    // 将点击后菜单变为红色
+//                    Text tex = (Text) component.findComponentById(ResourceTable.Id_item_index);
+//                    tex.setTextColor(Color.BLACK);
+//                    String text = tex.getText();
+//
+//                    // 渲染右边数据
+//                    //getDataFromNet(urls[finalI]);
+//
+//
+//                });
+//
+//            }
+
+        });
+
+        //二级分类的渲染
+        getUITaskDispatcher().asyncDispatch(()->{
+            for (int i = 0; i< result.get(0).getChild().size();i++){
+                DirectionalLayout second = (DirectionalLayout) LayoutScatter.getInstance(this).parse(ResourceTable.Layout_type_product, null, false);
+                Image img = (Image) second.findComponentById(ResourceTable.Id_index_channel_img);
+                Text text = (Text) second.findComponentById(ResourceTable.Id_index_channel_text);
+                String src = Constants.BASE_URl_IMAGE + result.get(0).getChild().get(i).getPic();
+                loadImage(this,src,img);
+                text.setText(result.get(0).getChild().get(i).getName());
+                container.addComponent(second);
+            }
+            for (int i = 0; i< result.get(0).getHot_product_list().size();i++){
+                DirectionalLayout second = (DirectionalLayout) LayoutScatter.getInstance(this).parse(ResourceTable.Layout_type_product, null, false);
+                Image img = (Image) second.findComponentById(ResourceTable.Id_index_channel_img);
+                Text text = (Text) second.findComponentById(ResourceTable.Id_index_channel_text);
+                String src = Constants.BASE_URl_IMAGE + result.get(0).getHot_product_list().get(i).getFigure();
+                loadImage(this,src,img);
+                text.setText(result.get(0).getHot_product_list().get(i).getName());
+                container.addComponent(second);
+            }
+        });
+    }
+
+    // 请求公共类
+    protected void getDataFromNet(String url){
+
+        // 发送网络请求
+        getGlobalTaskDispatcher(TaskPriority.DEFAULT).asyncDispatch(()->{
+            OkHttpUtils
+                    .get()
+                    .url(url)
+                    .id(100)
+                    .build()
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onError(Call call, Exception e, int i) {
+                            new ToastDialog(getContext()).setText("网络开小差了，请稍后再试");
+                            HiLog.info(LABEL, "请求失败" + e.toString());
+                        }
+                        @Override
+                        public void onResponse(String response, int id) {
+                            //两位请求成功
+                            switch (id) {
+                                case 100:
+                                    if (response != null) {
+                                        //解析数据
+                                        Gson gson = new Gson();
+                                        TypeBean typeBean = gson.fromJson(response, TypeBean.class);
+                                        result = typeBean.getResult();
+                                        // 处理类型页得到的数据
+                                        //typeProcessData();
+                                    }
+                                    break;
+                                case 101:
+                                    HiLog.info(LABEL,"type页面初始化有问题");
+                                    new ToastDialog(getContext()).setText("网络开小差了，请稍后再试");
+                                    break;
+                            }
+                        }
+                    });
+        });
     }
 
 
@@ -344,7 +457,7 @@ public class TabListSlice extends AbilitySlice {
 
                     // 拼接url
                     String imgSrc = Constants.BASE_URl_IMAGE + channel_info.get(i).getImage();
-                    LoadUrlImageUtils.loadImage(this, imgSrc, img);
+                    loadImage(this, imgSrc, img);
 
                     text.setText(channel_info.get(i).getChannel_name());
 
@@ -369,7 +482,7 @@ public class TabListSlice extends AbilitySlice {
 
                     // 拼接url
                     String imgSrc = Constants.BASE_URl_IMAGE + item.getFigure();
-                    LoadUrlImageUtils.loadImage(this, imgSrc, img);
+                    loadImage(this, imgSrc, img);
 
                     product_id.setText(item.getProduct_id());
 
@@ -379,7 +492,15 @@ public class TabListSlice extends AbilitySlice {
 
                     product.addComponent(dir);
 
+
+                    dir.setClickedListener(component->{
+                        Intent intent = new Intent();
+                        intent.setParam("product",item);
+                        present(new DetailAbilitySlice(),intent);
+                    });
+
                 }
+
 
             });
 
