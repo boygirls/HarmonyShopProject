@@ -63,6 +63,18 @@
     {
       "name": "malldataability_description",
       "value": "hap sample empty provider"
+    },
+    {
+      "name": "addability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "addability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_AddAbility",
+      "value": "entry_AddAbility"
     }
   ]
 }

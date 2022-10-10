@@ -7,7 +7,6 @@ import com.shop.util.LoadUrlImageUtils;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.Button;
-import ohos.agp.components.Component;
 import ohos.agp.components.Image;
 import ohos.agp.components.Text;
 import ohos.hiviewdfx.HiLog;
@@ -50,8 +49,9 @@ public class DetailAbilitySlice extends AbilitySlice {
 
         submit.setClickedListener(component -> {
             // TODO 具体的实现逻辑
-
-
+            Intent intent = new Intent();
+            intent.setParam("productId",product.getProduct_id());
+            present(new AddAbilitySlice(),intent);
         });
 
     }
