@@ -13,6 +13,8 @@ import ohos.agp.window.dialog.ToastDialog;
 import ohos.app.dispatcher.TaskDispatcher;
 import ohos.app.dispatcher.task.TaskPriority;
 
+import java.util.Map;
+
 public class LoginAbilitySlice extends AbilitySlice {
     @Override
     public void onStart(Intent intent) {
@@ -37,6 +39,14 @@ public class LoginAbilitySlice extends AbilitySlice {
                     //
                     //1.将token存入到数据库mall_info
                     int i = DataBaseUtil.setValue("token", resultVO.getMsg(), this);
+                    //将用户id和用户名也存入到数据库
+                    Map user = (Map) resultVO.getData();
+                    Double id = (Double) user.get("userId");
+                    double did = id;
+                    int userId = (int) did;
+                    DataBaseUtil.setValue("userId", userId+"", this);
+//                    DataBaseUtil.setValue("userName", (String) user.get("username"), this);
+
                     //2.跳转到TabListSlice
                     present(new TabListSlice(),new Intent());
                 }else {

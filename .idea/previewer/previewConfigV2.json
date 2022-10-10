@@ -28,9 +28,10 @@
    }
   ],
   "runningProfileList": [
-   "P40",
-   "MateX2"
+   "P40"
   ],
-  "availableProfileList": []
+  "availableProfileList": [
+   "MateX2"
+  ]
  }
 }
