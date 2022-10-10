@@ -37,6 +37,8 @@ public class AddAbilitySlice extends AbilitySlice {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_ability_detail_add);
 
+//        String productId = (String) intent.getParams().getParam("productId");
+
         product = (ResultBeanData.ResultBean.HotInfoBean) intent.getParams().getParam("product");
 
         HiLog.info(LABEL, "" + product);

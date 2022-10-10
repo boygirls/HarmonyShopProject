@@ -7,12 +7,37 @@
     ohos:background_element="#FFEFEEEE"
     ohos:padding="5vp">
 
-    <Text
-        ohos:height="match_content"
-        ohos:width="match_content"
-        ohos:text="订单结算"
-        ohos:text_size="15fp"
-        ohos:text_color="#999999"/>
+    <DirectionalLayout
+        ohos:height="40vp"
+        ohos:width="match_parent"
+        ohos:orientation="horizontal"
+        ohos:padding="5vp"
+        ohos:alignment="right">
+
+        <DirectionalLayout
+            ohos:height="match_content"
+            ohos:width="280vp"
+            ohos:layout_alignment="left">
+
+            <Text
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:text="订单结算"
+                ohos:text_size="15fp"
+                ohos:text_color="#999999"
+                />
+
+        </DirectionalLayout>
+
+        <Button
+            ohos:id="$+id:btn_exit"
+            ohos:height="30vp"
+            ohos:width="50vp"
+            ohos:text="返回"
+            ohos:text_size="15fp"
+            ohos:text_color="#ffffff"
+            ohos:background_element="#FFFC0738"/>
+    </DirectionalLayout>
 
     <!--显示默认收货地址-->
     <DirectionalLayout
@@ -105,6 +130,11 @@
             ohos:orientation="horizontal"
             ohos:background_element="#fffff"
             ohos:alignment="vertical_center">
+
+            <Checkbox
+                ohos:height="25vp"
+                ohos:width="25vp"
+                ohos:check_element="$graphic:checkbox_check_element"/>
 
             <Image
                 ohos:height="74vp"
