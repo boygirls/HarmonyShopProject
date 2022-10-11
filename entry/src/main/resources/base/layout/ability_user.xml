@@ -21,7 +21,7 @@
         <DependentLayout
             ohos:height="170vp"
             ohos:width="match_content"
-            ohos:background_element="$media:content"
+            ohos:background_element="white"
             >
 
             <Button

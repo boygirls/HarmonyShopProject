@@ -106,11 +106,11 @@ public class TabListSlice extends AbilitySlice {
 
     private void initTab() {
         if (tabList.getTabCount() == 0) {
-            tabList.addTab(createTab("首页"));
-            tabList.addTab(createTab("分类"));
-            tabList.addTab(createTab("社区"));
-            tabList.addTab(createTab("购物车"));
-            tabList.addTab(createTab("我的"));
+            tabList.addTab(createTab("_"));
+            tabList.addTab(createTab("_"));
+            tabList.addTab(createTab("_"));
+            tabList.addTab(createTab("_"));
+            tabList.addTab(createTab("_"));
 
             tabList.setFixedMode(true);
             tabList.getTabAt(0).select();
@@ -370,6 +370,7 @@ public class TabListSlice extends AbilitySlice {
         // 右边一级列表渲染
         getUITaskDispatcher().asyncDispatch(() -> {
             TableLayout cont = (TableLayout) findComponentById(ResourceTable.Id_type_Container);
+            cont.removeAllComponents();
             for (int i = 0; i <titles.length; i++) {
                 DirectionalLayout cpt = (DirectionalLayout) LayoutScatter.getInstance(this).parse(ResourceTable.Layout_type_text, null, false);
                 Text text = (Text) cpt.findComponentById(ResourceTable.Id_item_index);
@@ -384,48 +385,52 @@ public class TabListSlice extends AbilitySlice {
             }
 
             // 监听一级分类的点击事件，当点击一级分类
-//            for (int i = 0; i< fact.length; i++){
-//                DirectionalLayout fct = fact[i];
-//                // 点击一个一级菜单，将所有的一级菜单变为黑色
-//                fct.setClickedListener(component -> {
-//
-//                    for (int j = 0; j<fact.length; j++){
-//                        Text text = (Text) fact[j].findComponentById(ResourceTable.Id_item_index);
-//                        text.setTextColor(Color.BLACK);
-//                    }
-//                    // 将点击后菜单变为红色
-//                    Text tex = (Text) component.findComponentById(ResourceTable.Id_item_index);
-//                    tex.setTextColor(Color.BLACK);
-//                    String text = tex.getText();
-//
-//                    // 渲染右边数据
-//                    //getDataFromNet(urls[finalI]);
-//
-//
-//                });
-//
-//            }
+            for (int i = 0; i< fact.length; i++){
+                DirectionalLayout fct = fact[i];
+                // 点击一个一级菜单，将所有的一级菜单变为黑色
+                int finalI = i;
+                fct.setClickedListener(component -> {
 
+                    for (int j = 0; j<fact.length; j++){
+                        Text text = (Text) fact[j].findComponentById(ResourceTable.Id_item_index);
+                        text.setTextColor(Color.BLACK);
+                    }
+
+                    // 将点击后菜单变为红色
+                    Text tex = (Text) component.findComponentById(ResourceTable.Id_item_index);
+                    tex.setTextColor(Color.RED);
+                    String text = tex.getText();
+
+                    // 渲染二级列表
+                    container.removeAllComponents();
+                    getDataFromNet(urls[finalI]);
+                    loadSecondCategories(result,container);
+                });
+            }
         });
+        loadSecondCategories(result,container);
 
-        //二级分类的渲染
+    }
+
+    // 默认在右侧，显示第一个一级分类下的二三级分类
+    public void loadSecondCategories(List<TypeBean.ResultBean> list,TableLayout container){
         getUITaskDispatcher().asyncDispatch(()->{
-            for (int i = 0; i< result.get(0).getChild().size();i++){
+            for (int i = 0; i< list.get(0).getChild().size();i++){
                 DirectionalLayout second = (DirectionalLayout) LayoutScatter.getInstance(this).parse(ResourceTable.Layout_type_product, null, false);
                 Image img = (Image) second.findComponentById(ResourceTable.Id_index_channel_img);
                 Text text = (Text) second.findComponentById(ResourceTable.Id_index_channel_text);
-                String src = Constants.BASE_URl_IMAGE + result.get(0).getChild().get(i).getPic();
+                String src = Constants.BASE_URl_IMAGE + list.get(0).getChild().get(i).getPic();
                 loadImage(this,src,img);
-                text.setText(result.get(0).getChild().get(i).getName());
+                text.setText(list.get(0).getChild().get(i).getName());
                 container.addComponent(second);
             }
-            for (int i = 0; i< result.get(0).getHot_product_list().size();i++){
+            for (int i = 0; i< list.get(0).getHot_product_list().size();i++){
                 DirectionalLayout second = (DirectionalLayout) LayoutScatter.getInstance(this).parse(ResourceTable.Layout_type_product, null, false);
                 Image img = (Image) second.findComponentById(ResourceTable.Id_index_channel_img);
                 Text text = (Text) second.findComponentById(ResourceTable.Id_index_channel_text);
-                String src = Constants.BASE_URl_IMAGE + result.get(0).getHot_product_list().get(i).getFigure();
+                String src = Constants.BASE_URl_IMAGE + list.get(0).getHot_product_list().get(i).getFigure();
                 loadImage(this,src,img);
-                text.setText(result.get(0).getHot_product_list().get(i).getName());
+                text.setText(list.get(0).getHot_product_list().get(i).getName());
                 container.addComponent(second);
             }
         });
@@ -433,7 +438,6 @@ public class TabListSlice extends AbilitySlice {
 
     // 请求公共类
     protected void getDataFromNet(String url){
-
         // 发送网络请求
         getGlobalTaskDispatcher(TaskPriority.DEFAULT).asyncDispatch(()->{
             OkHttpUtils
@@ -521,31 +525,25 @@ public class TabListSlice extends AbilitySlice {
 
             // 加载商品数据
             getUITaskDispatcher().asyncDispatch(() -> {
-
                 List<ResultBeanData.ResultBean.HotInfoBean> hot_info = resultBean.getHot_info();
                 TableLayout product = (TableLayout) findComponentById(ResourceTable.Id_index_product_list);
-
                 for (ResultBeanData.ResultBean.HotInfoBean item : hot_info) {
+                    // 获取控件id
                     DirectionalLayout dir = (DirectionalLayout) LayoutScatter.getInstance(this).parse(ResourceTable.Layout_index_hot_info, null, false);
-
                     Text product_id = (Text) dir.findComponentById(ResourceTable.Id_index_hot_info_product_id);
                     Image img = (Image) dir.findComponentById(ResourceTable.Id_index_hot_info_img);
                     Text name = (Text) dir.findComponentById(ResourceTable.Id_index_hot_info_name);
                     Text price = (Text) dir.findComponentById(ResourceTable.Id_index_hot_info_price);
 
+                    // 填充数据
                     // 拼接url
                     String imgSrc = Constants.BASE_URl_IMAGE + item.getFigure();
                     loadImage(this, imgSrc, img);
-
                     product_id.setText(item.getProduct_id());
-
                     name.setText(item.getName());
-
                     price.setText("￥" + item.getCover_price());
-
                     product.addComponent(dir);
-
-
+                    // 跳转商品详情页
                     dir.setClickedListener(component->{
                         Intent intent = new Intent();
                         intent.setParam("product",item);

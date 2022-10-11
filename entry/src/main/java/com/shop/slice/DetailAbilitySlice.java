@@ -6,8 +6,11 @@ import com.shop.util.Constants;
 import com.shop.util.LoadUrlImageUtils;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
-import ohos.agp.components.*;
-import ohos.agp.utils.LayoutAlignment;
+
+import ohos.agp.components.Button;
+import ohos.agp.components.Image;
+import ohos.agp.components.Text;
+
 import ohos.agp.window.dialog.ToastDialog;
 import ohos.hiviewdfx.HiLog;
 import ohos.hiviewdfx.HiLogLabel;
@@ -18,19 +21,13 @@ public class DetailAbilitySlice extends AbilitySlice {
 
     private ResultBeanData.ResultBean.HotInfoBean product;
 
-
-
-
     @Override
     protected void onStart(Intent intent) {
         super.onStart(intent);
-
         setUIContent(ResourceTable.Layout_ability_detail);
-
+        // 根据key获取数据
         product = (ResultBeanData.ResultBean.HotInfoBean) intent.getParams().getParam("product");
-
         HiLog.info(LABEL, "" + product);
-
         initPage();
     }
 
@@ -49,6 +46,7 @@ public class DetailAbilitySlice extends AbilitySlice {
 
         submit.setClickedListener(component -> {
             // TODO 具体的实现逻辑
+
             Intent intent = new Intent();
             intent.setParam("productId",product);
 
@@ -59,6 +57,7 @@ public class DetailAbilitySlice extends AbilitySlice {
                     .setSize(DirectionalLayout.LayoutConfig.MATCH_CONTENT, DirectionalLayout.LayoutConfig.MATCH_CONTENT)
                     .setAlignment(LayoutAlignment.CENTER)
                     .show();
+
         });
 
     }

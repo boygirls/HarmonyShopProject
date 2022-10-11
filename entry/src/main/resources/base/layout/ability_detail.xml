@@ -11,9 +11,8 @@
         ohos:padding="10vp"
         ohos:orientation="horizontal"
         ohos:layout_alignment="top"
-
+        ohos:background_element="$graphic:detail_bottom"
         >
-
         <Text
             ohos:height="match_content"
             ohos:width="match_content"
@@ -21,14 +20,12 @@
             ohos:weight="1"
             ohos:padding="10vp"
             ohos:text=""/>
-
         <Text
             ohos:height="match_content"
             ohos:width="match_content"
             ohos:text="商品详情"
             ohos:text_size="20fp"
             ohos:weight="1"/>
-
         <Text
             ohos:height="match_content"
             ohos:width="match_content"
@@ -36,7 +33,6 @@
             ohos:weight="1"
             ohos:padding="10vp"
             ohos:text=""/>
-
     </DirectionalLayout>
 
     <ScrollView
@@ -45,7 +41,6 @@
         <DirectionalLayout
             ohos:height="match_parent"
             ohos:width="match_parent">
-
             <Image
                 ohos:id="$+id:tv_good_info_img"
                 ohos:height="350vp"
@@ -53,7 +48,6 @@
                 ohos:image_src="$media:content"
                 ohos:scale_mode="clip_center"
                 />
-
             <Text
                 ohos:id="$+id:tv_good_info_name"
                 ohos:height="match_content"
@@ -62,7 +56,6 @@
                 ohos:text_size="15fp"
                 ohos:top_margin="15vp"
                 ohos:text="【预售】《来年就交给你啦》珍藏画册 限量礼盒版"/>
-
             <Text
                 ohos:id="$+id:tv_good_info_desc"
                 ohos:height="match_content"
@@ -119,7 +112,6 @@
                 ohos:width="match_parent"
                 ohos:text="提示：普通商品享有质量问题7天退货，签收后3个工作日内可换货。其他特殊商品（如手办）的售后以页面说明为准"
                 ohos:text_size="25fp"/>
-
             <Text
                 ohos:height="12vp"
                 ohos:width="match_parent"
@@ -134,8 +126,6 @@
         </DirectionalLayout>
     </ScrollView>
 
-
-    
     <DirectionalLayout
         ohos:height="60vp"
         ohos:width="match_parent"
@@ -185,6 +175,5 @@
             ohos:background_element="red"
             ohos:weight="2"/>
     </DirectionalLayout>
-
 
 </StackLayout>
