@@ -3,13 +3,18 @@ package com.shop.slice;
 
 import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.shop.ResourceTable;
 import com.shop.TabListProvider;
 import com.shop.home.adapter.IndexImagePageSliderProvider;
 import com.shop.home.model.GoodsBean;
 import com.shop.home.model.ResultBeanData;
+import com.shop.home.model.ResultVO;
+import com.shop.home.model.Shopcart;
 import com.shop.type.model.TypeBean;
 import com.shop.util.Constants;
+import com.shop.util.DataBaseUtil;
+import com.shop.util.HttpRequestUtil;
 import com.shop.util.LoadUrlImageUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -23,10 +28,8 @@ import ohos.hiviewdfx.HiLog;
 import ohos.hiviewdfx.HiLogLabel;
 import okhttp3.Call;
 
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import static com.shop.util.LoadUrlImageUtils.loadImage;
 
@@ -35,6 +38,7 @@ public class TabListSlice extends AbilitySlice {
     private static final HiLogLabel LABEL = new HiLogLabel(HiLog.LOG_APP, 0x00201, "MY_TAG");
     private TabList tabList;
     private PageSlider pageSlider;
+    private Gson gson = new Gson();
 
     // 分类页面
     private List<TypeBean.ResultBean> result;
@@ -241,6 +245,55 @@ public class TabListSlice extends AbilitySlice {
 
     /*初始化购物车列表*/
     private void initShopCart(PageSlider slider) {
+
+        String userId = DataBaseUtil.getValue("userId",this);
+        String token = DataBaseUtil.getValue("token", this);
+        // 请求网络接口
+        getGlobalTaskDispatcher(TaskPriority.DEFAULT).asyncDispatch(()->{
+
+           String urlString ="dataability:///com.shop.MallDataAbility/Shopcart?userId="+userId;
+           String s = HttpRequestUtil.sendGetRequestWithToken(this,urlString,token);
+            ResultVO resultVO = gson.fromJson(s,ResultVO.class);
+
+            if(resultVO.getCode() != 10000){   //加用户后记得改==
+                String dataJsonStr = gson.toJson(resultVO.getData());
+                List<Shopcart> list = gson.fromJson(dataJsonStr,new TypeToken<List<Shopcart>>(){}.getType());
+
+                //当获取到购物车列表的信息后，显示到TableLayout的布局中
+                getUITaskDispatcher().asyncDispatch(()->{
+                    TableLayout container = (TableLayout) findComponentById(ResourceTable.Id_shopcart_list_table);
+
+                    for(int i = 0; i < list.size(); i++){
+                        Shopcart shopcart = list.get(i);
+                        //每个购物车信息渲染到购物车模板中
+                        Component template = LayoutScatter.getInstance(this).parse(ResourceTable.Layout_shopcart_item_template, null, false);
+                        Checkbox checkbox = (Checkbox) template.findComponentById(ResourceTable.Id_check_box);
+                        Image image = (Image) template.findComponentById(ResourceTable.Id_shopcart_item_image);
+                        Text text1 = (Text) template.findComponentById(ResourceTable.Id_shopcart_item_product_name_text);
+                        Text text2 = (Text) template.findComponentById(ResourceTable.Id_shopcart_item_product_price_text);
+//                        Button btn1 = (Button) template.findComponentById(ResourceTable.Id_num_btn1);
+                        Text text3 = (Text) template.findComponentById(ResourceTable.Id_shopcart_item_product_num_text);
+//                        Button btn2 = (Button) template.findComponentById(ResourceTable.Id_num_btn2);
+                        Text text4 = (Text) template.findComponentById(ResourceTable.Id_shopcart_item_total_price_text);
+
+                        //渲染数据
+                        String productImg = Constants.BASE_URl_IMAGE+shopcart.getProductImg();
+                        LoadUrlImageUtils.loadImage(this,productImg,image);//加载网络图片
+//                        image.setPixelMap(ResourceTable.Media_ic_launcher);//加载默认图片
+                        text1.setText(shopcart.getSkuName());
+                        text2.setText(shopcart.getProductPrice()+"");
+                        text3.setText(shopcart.getCartNum());
+                        text4.setText((Integer.parseInt(shopcart.getCartNum())*shopcart.getProductPrice())+"");
+                        //将购物车列表项加载到table中
+                        container.addComponent(template);
+                    }
+                });
+            }
+//            }else {
+//                present(new LoginAbilitySlice(),new Intent());
+//            }
+        });
+
         //绑定“结算”按钮的点击事件
         Button btn = (Button) pageSlider.findComponentById(ResourceTable.Id_account_button);
         btn.setClickedListener(component -> {

@@ -6,9 +6,11 @@ import com.shop.util.Constants;
 import com.shop.util.LoadUrlImageUtils;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
+
 import ohos.agp.components.Button;
 import ohos.agp.components.Image;
 import ohos.agp.components.Text;
+
 import ohos.agp.window.dialog.ToastDialog;
 import ohos.hiviewdfx.HiLog;
 import ohos.hiviewdfx.HiLogLabel;
@@ -44,12 +46,16 @@ public class DetailAbilitySlice extends AbilitySlice {
 
         submit.setClickedListener(component -> {
             // TODO 具体的实现逻辑
-//            Intent intent = new Intent();
-//            intent.setParam("productId",product);
-//            present(new AddAbilitySlice(),intent);
 
+            Intent intent = new Intent();
+            intent.setParam("productId",product);
+
+            DirectionalLayout toastLayout = (DirectionalLayout) LayoutScatter.getInstance(this)
+                    .parse(ResourceTable.Layout_layout_toast, null, false);
             new ToastDialog(getContext())
-                    .setText("添加到购物车")
+                    .setContentCustomComponent(toastLayout)
+                    .setSize(DirectionalLayout.LayoutConfig.MATCH_CONTENT, DirectionalLayout.LayoutConfig.MATCH_CONTENT)
+                    .setAlignment(LayoutAlignment.CENTER)
                     .show();
 
         });

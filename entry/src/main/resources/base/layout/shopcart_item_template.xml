@@ -25,7 +25,7 @@
     <Text
         ohos:id="$+id:shopcart_item_product_name_text"
         ohos:height="match_content"
-        ohos:width="100vp"
+        ohos:width="70vp"
         ohos:text_size="10fp"
         ohos:text_alignment="left"
         ohos:text="XXXXX"
@@ -39,8 +39,19 @@
         ohos:text_size="12fp"
         ohos:text_alignment="left"
         ohos:text="￥ 13.80"
-        ohos:padding="5vp"/>
+        ohos:padding="5vp"
+        ohos:text_color="#ff383b"/>
 
+    <Button
+        ohos:id="$+id:num_btn1"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text="-"
+        ohos:padding="5vp"
+        ohos:text_size="12fp"
+        ohos:left_margin="15vp"
+        ohos:background_element="#eeeeee"/>
+    
     <Text
         ohos:id="$+id:shopcart_item_product_num_text"
         ohos:height="match_content"
@@ -50,6 +61,16 @@
         ohos:text="2"
         ohos:padding="5vp"/>
 
+    <Button
+        ohos:id="$+id:num_btn2"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text="+"
+        ohos:padding="5vp"
+        ohos:text_size="12fp"
+        ohos:right_margin="15vp"
+        ohos:background_element="#eeeeee"/>
+
     <Text
         ohos:id="$+id:shopcart_item_total_price_text"
         ohos:height="match_content"
@@ -57,6 +78,7 @@
         ohos:text_size="12fp"
         ohos:text_alignment="left"
         ohos:text="￥ 27.60"
-        ohos:padding="5vp"/>
+        ohos:padding="5vp"
+        ohos:text_color="#ff383b"/>
 
 </DirectionalLayout>

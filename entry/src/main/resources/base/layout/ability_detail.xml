@@ -170,7 +170,7 @@
             ohos:id="$+id:tv_good_info_submit"
             ohos:height="30vp"
             ohos:width="30vp"
-            ohos:text="选择规格"
+            ohos:text="加入购物车"
             ohos:text_alignment="center"
             ohos:background_element="red"
             ohos:weight="2"/>

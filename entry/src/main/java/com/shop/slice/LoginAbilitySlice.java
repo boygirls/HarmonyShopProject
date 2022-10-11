@@ -30,7 +30,7 @@ public class LoginAbilitySlice extends AbilitySlice {
             //TODO 本地数据库访问。
             globalTaskDispatcher.asyncDispatch(()->{
                 //点击登录按钮，将账号和密码提交到用户认证接口
-                String urlString = "http://47.97.11.185:8080//user/login?username="+tf1.getText()+"&password="+tf2.getText();
+                String urlString = "dataability:///com.shop.MallDataAbility/mall_info?username="+tf1.getText()+"&password="+tf2.getText();
                 String s = HttpRequestUtil.sendGetRequest(this, urlString);
                 ResultVO resultVO = new Gson().fromJson(s, ResultVO.class);
                 System.out.println("~~~~~~~~~~~~~~~");
