@@ -4,16 +4,14 @@
     ohos:height="match_parent"
     ohos:width="match_parent"
     ohos:orientation="vertical">
-
     <Text
         ohos:height="40vp"
         ohos:width="match_parent"
         ohos:layout_alignment="center"
         ohos:text="分类"
         ohos:text_alignment="center"
-        ohos:text_color="#FF7AF3CC"
+        ohos:text_color="#FF3E86F3"
         ohos:text_size="30vp"/>
-
 
     <DirectionalLayout
         ohos:height="match_parent"
@@ -22,21 +20,24 @@
         ohos:padding="2vp"
         ohos:top_margin="5vp">
         <!--        左侧分类布局-->
-
         <TableLayout
             ohos:id="$+id:type_Container"
             ohos:height="match_parent"
             ohos:width="100vp">
         </TableLayout>
-
         <!--        右侧二级分类-->
-        <TableLayout
-            ohos:id="$+id:type_TabLayout"
+        <ScrollView
             ohos:height="match_parent"
-            ohos:width="match_parent"
-            ohos:background_element="#FFE2E7E2"
-            ohos:column_count="3">
-        </TableLayout>
+            ohos:width="match_parent">
+            <TableLayout
+                ohos:id="$+id:type_TabLayout"
+                ohos:height="match_parent"
+                ohos:width="match_parent"
+                ohos:background_element="#FFE2E7E2"
+                ohos:column_count="3">
+            </TableLayout>
+        </ScrollView>
+
     </DirectionalLayout>
 
 

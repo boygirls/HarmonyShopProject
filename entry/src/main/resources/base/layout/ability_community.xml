@@ -10,11 +10,11 @@
     <Text
         ohos:height="40vp"
         ohos:width="match_parent"
+        ohos:layout_alignment="center"
         ohos:text="社区"
-        ohos:text_size="30vp"
-        ohos:text_color="#FF7AF3CC"
         ohos:text_alignment="center"
-        ohos:layout_alignment="center"/>
+        ohos:text_color="#FF3E86F3"
+        ohos:text_size="30vp"/>
 
     <Button
         ohos:id="$+id:connTest"

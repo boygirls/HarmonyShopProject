@@ -9,8 +9,8 @@
 
     <Image
         ohos:id="$+id:index_channel_img"
-        ohos:height="40vp"
-        ohos:width="40vp"
+        ohos:height="70vp"
+        ohos:width="70vp"
         ohos:layout_alignment="center"
         ohos:clip_alignment="center"
         ohos:scale_mode="zoom_center"/>

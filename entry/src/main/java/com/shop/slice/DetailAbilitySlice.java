@@ -9,6 +9,7 @@ import ohos.aafwk.content.Intent;
 import ohos.agp.components.Button;
 import ohos.agp.components.Image;
 import ohos.agp.components.Text;
+import ohos.agp.window.dialog.ToastDialog;
 import ohos.hiviewdfx.HiLog;
 import ohos.hiviewdfx.HiLogLabel;
 
@@ -18,19 +19,13 @@ public class DetailAbilitySlice extends AbilitySlice {
 
     private ResultBeanData.ResultBean.HotInfoBean product;
 
-
-
-
     @Override
     protected void onStart(Intent intent) {
         super.onStart(intent);
-
         setUIContent(ResourceTable.Layout_ability_detail);
-
+        // 根据key获取数据
         product = (ResultBeanData.ResultBean.HotInfoBean) intent.getParams().getParam("product");
-
         HiLog.info(LABEL, "" + product);
-
         initPage();
     }
 
@@ -49,9 +44,14 @@ public class DetailAbilitySlice extends AbilitySlice {
 
         submit.setClickedListener(component -> {
             // TODO 具体的实现逻辑
-            Intent intent = new Intent();
-            intent.setParam("productId",product.getProduct_id());
-            present(new AddAbilitySlice(),intent);
+//            Intent intent = new Intent();
+//            intent.setParam("productId",product);
+//            present(new AddAbilitySlice(),intent);
+
+            new ToastDialog(getContext())
+                    .setText("添加到购物车")
+                    .show();
+
         });
 
     }
