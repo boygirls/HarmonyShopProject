@@ -11,6 +11,7 @@ public class Constants {
     //public static String BASE = "http://192.168.43.19:8081";
     public static String BASE = "http://xwqebd.natappfree.cc";
 
+
     // 请求Json数据基本URL
     public static final String BASE_URL_JSON = BASE+"/AndroidShop/json/";
 
