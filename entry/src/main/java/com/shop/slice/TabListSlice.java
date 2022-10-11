@@ -335,7 +335,6 @@ public class TabListSlice extends AbilitySlice {
             for (int i = 0; i< fact.length; i++){
                 DirectionalLayout fct = fact[i];
                 // 点击一个一级菜单，将所有的一级菜单变为黑色
-
                 int finalI = i;
                 fct.setClickedListener(component -> {
 
@@ -349,19 +348,12 @@ public class TabListSlice extends AbilitySlice {
                     tex.setTextColor(Color.RED);
                     String text = tex.getText();
 
-
                     // 渲染二级列表
                     container.removeAllComponents();
                     getDataFromNet(urls[finalI]);
                     loadSecondCategories(result,container);
-
-
                 });
-
-
-
             }
-
         });
         loadSecondCategories(result,container);
 
