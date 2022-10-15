@@ -1,6 +1,8 @@
 package com.shop.util;
 
-import com.shop.user.model.user;
+
+import com.shop.home.model.Shopcart;
+import com.shop.user.model.User;
 import ohos.aafwk.ability.DataAbilityHelper;
 import ohos.aafwk.ability.DataAbilityRemoteException;
 import ohos.app.Context;
@@ -9,11 +11,14 @@ import ohos.data.rdb.ValuesBucket;
 import ohos.data.resultset.ResultSet;
 import ohos.utils.net.Uri;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DataBaseUtil {
 
     private static Uri uri1 = Uri.parse("dataability:///com.shop.MallDataAbility/mall_info");
     private static Uri uri2 = Uri.parse("dataability:///com.shop.MallDataAbility/user");
-    private static Uri uri3 = Uri.parse("dataability:///com.shop.MallDataAbility/Shopcart");
+    private static Uri uri3 = Uri.parse("dataability:///com.shop.MallDataAbility/ShopCart");
 
     public static String getValue(String key, Context context){
         String value = null;
@@ -22,7 +27,7 @@ public class DataBaseUtil {
 
         String[] colums = {"id","key","value"};
         DataAbilityPredicates predicates = new DataAbilityPredicates();
-        predicates.equalTo("key",key);
+        predicates.equalTo("key",key);  //查询条件
         //predicates.equalTo("id","2");
         try {
             ResultSet rs = dataAbilityHelper.query(uri1, colums, predicates);
@@ -50,14 +55,69 @@ public class DataBaseUtil {
         return i;
     }
 
-    public static int initUser(user users, Context context){
+    public static int getUser1(String users, Context context){
+        DataAbilityHelper dataAbilityHelper = DataAbilityHelper.creator(context);
+
+        String[] colums = {"userId","username","password","token"};
+        DataAbilityPredicates predicates = new DataAbilityPredicates();
+        predicates.equalTo("userId",users);
+        try {
+            ResultSet rs = dataAbilityHelper.query(uri2, colums, predicates);
+            if(rs.getRowCount() > 0){
+               return 1;
+            }
+        } catch (DataAbilityRemoteException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+//    public static String getuser(Context context){
+//        String value = null;
+//        String[] colums = {"userId","username","password","token"};
+//        RdbPredicates rdbPredicates = new RdbPredicates("user").equalTo("userId",1);
+//            ResultSet resultSet = rdbStore.query(rdbPredicates,colums);
+//            resultSet.goToNextRow();
+//        return value;
+//    }
+
+    public static User getUser(User users, Context context){
+        User value = new User();
+        DataAbilityHelper dataAbilityHelper = DataAbilityHelper.creator(context);
+
+        String[] colums = {"userId","username","password","token"};
+        DataAbilityPredicates predicates = new DataAbilityPredicates();
+//        predicates.equalTo("userId",userId);
+        predicates.equalTo("username",users.getUsername())
+                .and().equalTo("password",users.getPassword());  //查询条件
+
+//        predicates.equalTo("password",password);
+//        predicates.equalTo("token",token);
+
+        try {
+            ResultSet rs = dataAbilityHelper.query(uri2, colums, predicates);
+            if(rs.getRowCount() > 0){      //表的总数
+                rs.goToFirstRow();
+                value.setId(rs.getInt(0));
+                value.setUsername(rs.getString(1));
+                value.setPassword(rs.getString(2));
+                value.setToken(rs.getString(3));
+                return value;
+            }
+        } catch (DataAbilityRemoteException e) {
+            e.printStackTrace();
+        }
+        return value;
+    }
+
+    public static int setUser(String userId, String username, String password, String token,Context context){
 
         int i = 0;
         ValuesBucket valuesBucket = new ValuesBucket();
-        valuesBucket.putString("userId",users.getId()+ "");
-        valuesBucket.putString("username",users.getUsername());
-        valuesBucket.putString("password",users.getPassword());
-        valuesBucket.putString("token",users.getToken());
+        valuesBucket.putString("userId",userId);
+        valuesBucket.putString("username",username);
+        valuesBucket.putString("password",password);
+        valuesBucket.putString("token",token);
         DataAbilityHelper dataAbilityHelper = DataAbilityHelper.creator(context);
         try{
             i = dataAbilityHelper.insert(uri2,valuesBucket);
@@ -65,5 +125,91 @@ public class DataBaseUtil {
             e.printStackTrace();
         }
         return i;
+    }
+
+
+    public static int setShoppingCart(Shopcart shopcart,Context context){
+
+        int i = 0;
+        ValuesBucket values = new ValuesBucket();
+        values.putString("cartId", shopcart.getCartId()+"");
+        values.putString("userId", shopcart.getUserId()+"");
+        values.putString("token",shopcart.getToken());
+        values.putString("productId", shopcart.getProductId());
+        values.putString("skuId", shopcart.getSkuId());
+        values.putString("cartNum", shopcart.getCartNum());
+        values.putString("cartTime", shopcart.getCartTime());
+        values.putString("productPrice", shopcart.getProductPrice()+"");
+        values.putString("skuProps", shopcart.getSkuProps());
+        values.putString("productName", shopcart.getProductName());
+        values.putString("productImg", shopcart.getProductImg());
+        values.putString("originalPrice", shopcart.getOriginalPrice()+"");
+        values.putString("sellPrice", shopcart.getSellPrice()+"");
+        values.putString("skuName", shopcart.getSkuName());
+        values.putString("skuStock", shopcart.getSkuStock()+"");
+        DataAbilityHelper dataAbilityHelper = DataAbilityHelper.creator(context);
+        try{
+            i = dataAbilityHelper.insert(uri3,values);
+        } catch (DataAbilityRemoteException e) {
+            e.printStackTrace();
+        }
+        return i;
+
+    }
+
+    public static List<Shopcart> getShoppingCart(int userId,Context context){
+
+        List<Shopcart> list = new ArrayList<>();
+
+        DataAbilityHelper dataAbilityHelper = DataAbilityHelper.creator(context);
+
+        // TODO 改为购物车列表字段
+        String[] colums = {"cartId","userId","token","productId","skuId","cartNum","cartTime","productPrice","skuProps","productName","productImg","originalPrice","sellPrice","skuName","skuStock"};
+        DataAbilityPredicates predicates = new DataAbilityPredicates();
+        predicates.equalTo("userId",userId);//查询条件
+
+        try {
+            ResultSet rs = dataAbilityHelper.query(uri3, colums, predicates);
+            if(rs.getRowCount() > 0){      //表的总数
+                rs.goToFirstRow();
+                for (int i = 0; i < rs.getRowCount();i++){
+                    Shopcart shopcart = new Shopcart();
+                    // TODO 填入参数列表
+                    shopcart.setCartId(rs.getInt(0));
+                    shopcart.setUserId(rs.getInt(1));
+                    shopcart.setToken(rs.getString(2));
+                    shopcart.setProductId(rs.getString(3));
+                    shopcart.setSkuId(rs.getString(4));
+                    shopcart.setCartNum(rs.getString(5));
+                    shopcart.setCartTime(rs.getString(6));
+                    shopcart.setProductPrice(rs.getDouble(7));
+                    shopcart.setSkuProps(rs.getString(8));
+                    shopcart.setProductName(rs.getString(9));
+                    shopcart.setProductImg(rs.getString(10));
+                    shopcart.setOriginalPrice(rs.getDouble(11));
+                    shopcart.setSellPrice(rs.getDouble(12));
+                    shopcart.setSkuName(rs.getString(13));
+                    shopcart.setSkuStock(rs.getInt(14));
+                    list.add(shopcart);
+                    rs.goToNextRow();
+                }
+                return list;
+            }
+        } catch (DataAbilityRemoteException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+
+    public static int deleteShopCart(Context context) throws DataAbilityRemoteException {
+
+        int value = 0;
+
+        DataAbilityHelper dataAbilityHelper = DataAbilityHelper.creator(context);
+        DataAbilityPredicates predicates = new DataAbilityPredicates();
+        value = (int)dataAbilityHelper.delete(uri3,predicates);
+
+        return value;
     }
 }

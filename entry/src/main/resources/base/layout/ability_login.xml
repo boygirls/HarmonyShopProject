@@ -17,7 +17,8 @@
         ohos:id="$+id:login_username"
         ohos:height="match_content"
         ohos:width="match_parent"
-        ohos:hint="登录账号"
+        ohos:hint="请输入登录账号"
+        ohos:text="wy"
         ohos:text_size="15fp"
         ohos:text_color="#777777"
         ohos:text_alignment="vertical_center"
@@ -29,12 +30,14 @@
         ohos:id="$+id:login_pwd"
         ohos:height="match_content"
         ohos:width="match_parent"
-        ohos:hint="登录密码"
+        ohos:hint="请输入登录密码"
+        ohos:text="123456"
         ohos:text_size="15fp"
         ohos:text_color="#777777"
         ohos:text_alignment="vertical_center"
         ohos:margin="5vp"
         ohos:padding="10vp"
+        ohos:multiple_lines="false"
         ohos:background_element="$graphic:background_textfield"/>
 
     <Button

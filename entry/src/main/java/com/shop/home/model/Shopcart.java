@@ -2,29 +2,52 @@ package com.shop.home.model;
 
 public class Shopcart {
 
-    private int cartId;
-    private String productId;
-    private String skuId;
-    private String userId;
-    private String cartNum;
+    private int userId;     //用户id
+    private String token;
+    private int cartId;     //购物车id
+    private String productId;       //产品id
+    private String skuId;       //套餐id
+    private String cartNum;     //购物车数量
     private String cartTime;
-    private double productPrice;
+    private double productPrice;        //产品价格
     private String skuProps;
-    private String productName;
-    private String productImg;
+    private String productName;     //产品数量
+    private String productImg;      //产品图片
     private double originalPrice;
     private double sellPrice;
-    private String skuName;
+    private String skuName;     //套餐名称
     private int skuStock;
 
     public Shopcart() {
     }
 
-    public Shopcart(int cartId, String productId, String skuId, String userId, String cartNum, String cartTime, double productPrice, String skuProps, String productName, String productImg, double originalPrice, double sellPrice, String skuName, int skuStock) {
+    @Override
+    public String toString() {
+        return "Shopcart{" +
+                "userId=" + userId +
+                ", token='" + token + '\'' +
+                ", cartId=" + cartId +
+                ", productId='" + productId + '\'' +
+                ", skuId='" + skuId + '\'' +
+                ", cartNum='" + cartNum + '\'' +
+                ", cartTime='" + cartTime + '\'' +
+                ", productPrice=" + productPrice +
+                ", skuProps='" + skuProps + '\'' +
+                ", productName='" + productName + '\'' +
+                ", productImg='" + productImg + '\'' +
+                ", originalPrice=" + originalPrice +
+                ", sellPrice=" + sellPrice +
+                ", skuName='" + skuName + '\'' +
+                ", skuStock=" + skuStock +
+                '}';
+    }
+
+    public Shopcart(int userId, String token, int cartId, String productId, String skuId, String cartNum, String cartTime, double productPrice, String skuProps, String productName, String productImg, double originalPrice, double sellPrice, String skuName, int skuStock) {
+        this.userId = userId;
+        this.token = token;
         this.cartId = cartId;
         this.productId = productId;
         this.skuId = skuId;
-        this.userId = userId;
         this.cartNum = cartNum;
         this.cartTime = cartTime;
         this.productPrice = productPrice;
@@ -37,24 +60,13 @@ public class Shopcart {
         this.skuStock = skuStock;
     }
 
-    @Override
-    public String toString() {
-        return "Shopcart{" +
-                "cartId=" + cartId +
-                ", productId='" + productId + '\'' +
-                ", skuId='" + skuId + '\'' +
-                ", userId='" + userId + '\'' +
-                ", cartNum='" + cartNum + '\'' +
-                ", cartTime='" + cartTime + '\'' +
-                ", productPrice=" + productPrice +
-                ", skuProps='" + skuProps + '\'' +
-                ", productName='" + productName + '\'' +
-                ", productImg='" + productImg + '\'' +
-                ", originalPrice=" + originalPrice +
-                ", sellPrice=" + sellPrice +
-                ", skuName='" + skuName + '\'' +
-                ", skuStock=" + skuStock +
-                '}';
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public int getCartId() {
@@ -81,11 +93,11 @@ public class Shopcart {
         this.skuId = skuId;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

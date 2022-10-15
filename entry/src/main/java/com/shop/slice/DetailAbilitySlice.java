@@ -6,12 +6,9 @@ import com.shop.util.Constants;
 import com.shop.util.LoadUrlImageUtils;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
-
 import ohos.agp.components.Button;
 import ohos.agp.components.Image;
 import ohos.agp.components.Text;
-
-import ohos.agp.window.dialog.ToastDialog;
 import ohos.hiviewdfx.HiLog;
 import ohos.hiviewdfx.HiLogLabel;
 
@@ -27,7 +24,9 @@ public class DetailAbilitySlice extends AbilitySlice {
         setUIContent(ResourceTable.Layout_ability_detail);
         // 根据key获取数据
         product = (ResultBeanData.ResultBean.HotInfoBean) intent.getParams().getParam("product");
+
         HiLog.info(LABEL, "" + product);
+
         initPage();
     }
 
@@ -50,13 +49,16 @@ public class DetailAbilitySlice extends AbilitySlice {
             Intent intent = new Intent();
             intent.setParam("productId",product);
 
-            DirectionalLayout toastLayout = (DirectionalLayout) LayoutScatter.getInstance(this)
-                    .parse(ResourceTable.Layout_layout_toast, null, false);
-            new ToastDialog(getContext())
-                    .setContentCustomComponent(toastLayout)
-                    .setSize(DirectionalLayout.LayoutConfig.MATCH_CONTENT, DirectionalLayout.LayoutConfig.MATCH_CONTENT)
-                    .setAlignment(LayoutAlignment.CENTER)
-                    .show();
+            present(new AddAbilitySlice(),intent);
+
+//            DirectionalLayout toastLayout = (DirectionalLayout) LayoutScatter.getInstance(this)
+//                    .parse(ResourceTable.Layout_layout_toast, null, false);
+
+//            new ToastDialog(getContext())
+//                    .setContentCustomComponent(toastLayout)
+//                    .setSize(DirectionalLayout.LayoutConfig.MATCH_CONTENT, DirectionalLayout.LayoutConfig.MATCH_CONTENT)
+//                    .setAlignment(LayoutAlignment.CENTER)
+//                    .show();
 
         });
 

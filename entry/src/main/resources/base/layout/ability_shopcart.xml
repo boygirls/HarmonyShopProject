@@ -5,16 +5,15 @@
     ohos:width="match_parent"
     ohos:background_element="#ffffff"
     ohos:padding="5vp">
-
     <Text
         ohos:id="$+id:shopcart_title_text"
-        ohos:align_parent_top="true"
-        ohos:height="match_content"
-        ohos:width="match_content"
+        ohos:height="40vp"
+        ohos:width="match_parent"
+        ohos:layout_alignment="center"
         ohos:text="我的购物车"
-        ohos:text_size="15fp"
-        ohos:text_color="#bbbbbb"
-        ohos:layout_alignment="center"/>
+        ohos:text_alignment="center"
+        ohos:text_color="#FF3E86F3"
+        ohos:text_size="30vp"/>
 
     <ScrollView
         ohos:id="$+id:shopcart_list_scrollview"

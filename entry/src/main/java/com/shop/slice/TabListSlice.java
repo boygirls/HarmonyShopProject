@@ -3,18 +3,16 @@ package com.shop.slice;
 
 import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.shop.ResourceTable;
 import com.shop.TabListProvider;
 import com.shop.home.adapter.IndexImagePageSliderProvider;
 import com.shop.home.model.GoodsBean;
 import com.shop.home.model.ResultBeanData;
-import com.shop.home.model.ResultVO;
 import com.shop.home.model.Shopcart;
 import com.shop.type.model.TypeBean;
+import com.shop.user.model.User;
 import com.shop.util.Constants;
 import com.shop.util.DataBaseUtil;
-import com.shop.util.HttpRequestUtil;
 import com.shop.util.LoadUrlImageUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -62,23 +60,23 @@ public class TabListSlice extends AbilitySlice {
         tabList.selectTabAt(0);
         initIndex(pageSlider);
 
-        initSHopcartData();
+       // initSHopcartData();
     }
 
     /**
      * 创建购物车假数据
      */
-    private void initSHopcartData() {
-        for ( int i = 0; i < 8; i++){
-            GoodsBean goodsBean = new GoodsBean();
-            goodsBean.setProduct_id(i + "");
-            goodsBean.setCover_price("123");
-            goodsBean.setFigure("https://cn.bing.com/images/search?view=detailV2&ccid=tDXT8m%2f5&id=19CFDD45FD858956BD09FD8ABECDA1169A1C8281&thid=OIP.tDXT8m_5oTMDAzXQU2k8wQHaHa&mediaurl=https%3a%2f%2fdemosc.chinaz.net%2fFiles%2fpic%2ficons%2f5949%2fq4.png&exph=512&expw=512&q=qq&simid=608037094656079600&FORM=IRPRST&ck=47E85E4F3F8533349B8504EAE7EB0907&selectedIndex=16");
-            goodsBean.setName("2");
-            goodsShopCart.add(goodsBean);
-        }
-
-    }
+//    private void initSHopcartData() {
+//        for ( int i = 0; i < 8; i++){
+//            GoodsBean goodsBean = new GoodsBean();
+//            goodsBean.setProduct_id(i + "");
+//            goodsBean.setCover_price("123");
+//            goodsBean.setFigure("https://cn.bing.com/images/search?view=detailV2&ccid=tDXT8m%2f5&id=19CFDD45FD858956BD09FD8ABECDA1169A1C8281&thid=OIP.tDXT8m_5oTMDAzXQU2k8wQHaHa&mediaurl=https%3a%2f%2fdemosc.chinaz.net%2fFiles%2fpic%2ficons%2f5949%2fq4.png&exph=512&expw=512&q=qq&simid=608037094656079600&FORM=IRPRST&ck=47E85E4F3F8533349B8504EAE7EB0907&selectedIndex=16");
+//            goodsBean.setName("2");
+//            goodsShopCart.add(goodsBean);
+//        }
+//
+//    }
 
     /**
      * 初始化监听
@@ -245,21 +243,12 @@ public class TabListSlice extends AbilitySlice {
 
     /*初始化购物车列表*/
     private void initShopCart(PageSlider slider) {
+        User user = new User();
+        int userId = user.getId();
+        List<Shopcart> list = DataBaseUtil.getShoppingCart(userId,this);
 
-        String userId = DataBaseUtil.getValue("userId",this);
-        String token = DataBaseUtil.getValue("token", this);
-        // 请求网络接口
-        getGlobalTaskDispatcher(TaskPriority.DEFAULT).asyncDispatch(()->{
+        //当获取到购物车列表的信息后，显示到TableLayout的布局中
 
-           String urlString ="dataability:///com.shop.MallDataAbility/Shopcart?userId="+userId;
-           String s = HttpRequestUtil.sendGetRequestWithToken(this,urlString,token);
-            ResultVO resultVO = gson.fromJson(s,ResultVO.class);
-
-            if(resultVO.getCode() != 10000){   //加用户后记得改==
-                String dataJsonStr = gson.toJson(resultVO.getData());
-                List<Shopcart> list = gson.fromJson(dataJsonStr,new TypeToken<List<Shopcart>>(){}.getType());
-
-                //当获取到购物车列表的信息后，显示到TableLayout的布局中
                 getUITaskDispatcher().asyncDispatch(()->{
                     TableLayout container = (TableLayout) findComponentById(ResourceTable.Id_shopcart_list_table);
 
@@ -280,7 +269,7 @@ public class TabListSlice extends AbilitySlice {
                         String productImg = Constants.BASE_URl_IMAGE+shopcart.getProductImg();
                         LoadUrlImageUtils.loadImage(this,productImg,image);//加载网络图片
 //                        image.setPixelMap(ResourceTable.Media_ic_launcher);//加载默认图片
-                        text1.setText(shopcart.getSkuName());
+                        text1.setText(shopcart.getProductName());
                         text2.setText(shopcart.getProductPrice()+"");
                         text3.setText(shopcart.getCartNum());
                         text4.setText((Integer.parseInt(shopcart.getCartNum())*shopcart.getProductPrice())+"");
@@ -288,11 +277,55 @@ public class TabListSlice extends AbilitySlice {
                         container.addComponent(template);
                     }
                 });
-            }
+
+        //String userId = DataBaseUtil.getValue("userId",this);
+        //String token = DataBaseUtil.getValue("token", this);
+
+        // 请求网络接口
+//        getGlobalTaskDispatcher(TaskPriority.DEFAULT).asyncDispatch(()->{
+//
+//           String urlString ="dataability:///com.shop.MallDataAbility/Shopcart?userId="+userId;
+//           String s = HttpRequestUtil.sendGetRequestWithToken(this,urlString,token);
+//            ResultVO resultVO = gson.fromJson(s,ResultVO.class);
+//
+//            if(resultVO.getCode() != 10000){   //加用户后记得改==
+//                String dataJsonStr = gson.toJson(resultVO.getData());
+//                List<Shopcart> list = gson.fromJson(dataJsonStr,new TypeToken<List<Shopcart>>(){}.getType());
+//
+//                //当获取到购物车列表的信息后，显示到TableLayout的布局中
+//                getUITaskDispatcher().asyncDispatch(()->{
+//                    TableLayout container = (TableLayout) findComponentById(ResourceTable.Id_shopcart_list_table);
+//
+//                    for(int i = 0; i < list.size(); i++){
+//                        Shopcart shopcart = list.get(i);
+//                        //每个购物车信息渲染到购物车模板中
+//                        Component template = LayoutScatter.getInstance(this).parse(ResourceTable.Layout_shopcart_item_template, null, false);
+//                        Checkbox checkbox = (Checkbox) template.findComponentById(ResourceTable.Id_check_box);
+//                        Image image = (Image) template.findComponentById(ResourceTable.Id_shopcart_item_image);
+//                        Text text1 = (Text) template.findComponentById(ResourceTable.Id_shopcart_item_product_name_text);
+//                        Text text2 = (Text) template.findComponentById(ResourceTable.Id_shopcart_item_product_price_text);
+////                        Button btn1 = (Button) template.findComponentById(ResourceTable.Id_num_btn1);
+//                        Text text3 = (Text) template.findComponentById(ResourceTable.Id_shopcart_item_product_num_text);
+////                        Button btn2 = (Button) template.findComponentById(ResourceTable.Id_num_btn2);
+//                        Text text4 = (Text) template.findComponentById(ResourceTable.Id_shopcart_item_total_price_text);
+//
+//                        //渲染数据
+//                        String productImg = Constants.BASE_URl_IMAGE+shopcart.getProductImg();
+//                        LoadUrlImageUtils.loadImage(this,productImg,image);//加载网络图片
+////                        image.setPixelMap(ResourceTable.Media_ic_launcher);//加载默认图片
+//                        text1.setText(shopcart.getProductName());
+//                        text2.setText(shopcart.getProductPrice()+"");
+//                        text3.setText(shopcart.getCartNum());
+//                        text4.setText((Integer.parseInt(shopcart.getCartNum())*shopcart.getProductPrice())+"");
+//                        //将购物车列表项加载到table中
+//                        container.addComponent(template);
+//                    }
+//                });
+//            }
 //            }else {
 //                present(new LoginAbilitySlice(),new Intent());
 //            }
-        });
+//        });
 
         //绑定“结算”按钮的点击事件
         Button btn = (Button) pageSlider.findComponentById(ResourceTable.Id_account_button);

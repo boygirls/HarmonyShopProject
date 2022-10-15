@@ -1,19 +1,16 @@
 package com.shop.user.model;
 
-import java.io.Serializable;
-
-public class user implements Serializable {
-
+public class User {
     private int id;
     private String username;
     private String password;
     private String token;
 
-    public user() {
+    public User() {
         super();
     }
 
-    public user(int id, String username, String password, String token) {
+    public User(int id, String username, String password, String token) {
         this.id = id;
         this.username = username;
         this.password = password;
