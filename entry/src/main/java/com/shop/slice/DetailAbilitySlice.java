@@ -35,7 +35,7 @@ public class DetailAbilitySlice extends AbilitySlice {
         Text name = (Text) findComponentById(ResourceTable.Id_tv_good_info_name);
         Image img = (Image) findComponentById(ResourceTable.Id_tv_good_info_img);
 
-        price.setText(product.getCover_price());
+        price.setText("￥"+product.getCover_price());
         name.setText(product.getName());
         String src = Constants.BASE_URl_IMAGE + product.getFigure();
         LoadUrlImageUtils.loadImage(this,src,img);
@@ -47,19 +47,19 @@ public class DetailAbilitySlice extends AbilitySlice {
             // TODO 具体的实现逻辑
 
             Intent intent = new Intent();
-            intent.setParam("productId",product);
+            intent.setParam("product",product);
 
             present(new AddAbilitySlice(),intent);
 
 //            DirectionalLayout toastLayout = (DirectionalLayout) LayoutScatter.getInstance(this)
 //                    .parse(ResourceTable.Layout_layout_toast, null, false);
-
+//
 //            new ToastDialog(getContext())
 //                    .setContentCustomComponent(toastLayout)
 //                    .setSize(DirectionalLayout.LayoutConfig.MATCH_CONTENT, DirectionalLayout.LayoutConfig.MATCH_CONTENT)
 //                    .setAlignment(LayoutAlignment.CENTER)
 //                    .show();
-
+//
         });
 
     }

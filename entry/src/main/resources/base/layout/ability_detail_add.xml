@@ -6,7 +6,7 @@
     ohos:orientation="vertical">
 
     <Image
-        ohos:id="$+id:tv_good_info_img"
+        ohos:id="$+id:tv_add_info_img"
         ohos:height="350vp"
         ohos:width="match_parent"
         ohos:image_src="$media:content"
@@ -25,17 +25,18 @@
         ohos:padding="5vp"/>
     
     <Text
-        ohos:id="$+id:tv_good_info_name"
+        ohos:id="$+id:tv_add_info_name"
         ohos:height="match_content"
         ohos:width="match_parent"
         ohos:text_color="#323427"
         ohos:text_size="15fp"
         ohos:top_margin="15vp"
         ohos:text="【预售】《来年就交给你啦》珍藏画册 限量礼盒版"
+        ohos:multiple_lines="true"
         ohos:padding="5vp"/>
 
     <Text
-        ohos:id="$+id:tv_good_info_desc"
+        ohos:id="$+id:tv_add_info_desc"
         ohos:height="match_content"
         ohos:width="match_parent"
         ohos:text_color="#cccccc"
@@ -83,43 +84,43 @@
 
     </DirectionalLayout>
 
-    <TableLayout
-        ohos:id="$+id:product_skus_table"
-        ohos:height="match_content"
-        ohos:width="match_parent"
-        ohos:column_count="1">
-        <!--假数据-->
-        <Text
-            ohos:height="match_content"
-            ohos:width="match_parent"
-            ohos:text="套餐一"
-            ohos:text_size="13fp"
-            ohos:padding="10vp"/>
-        <Text
-            ohos:height="match_content"
-            ohos:width="match_parent"
-            ohos:text="套餐二"
-            ohos:text_size="13fp"
-            ohos:padding="10vp"/>
-        <Text
-            ohos:height="match_content"
-            ohos:width="match_parent"
-            ohos:text="套餐三"
-            ohos:text_size="13fp"
-            ohos:padding="10vp"/>
+<!--    <TableLayout-->
+<!--        ohos:id="$+id:product_skus_table"-->
+<!--        ohos:height="match_content"-->
+<!--        ohos:width="match_parent"-->
+<!--        ohos:column_count="1">-->
+<!--        &lt;!&ndash;假数据&ndash;&gt;-->
+<!--        <Text-->
+<!--            ohos:height="match_content"-->
+<!--            ohos:width="match_parent"-->
+<!--            ohos:text="套餐一"-->
+<!--            ohos:text_size="13fp"-->
+<!--            ohos:padding="10vp"/>-->
+<!--        <Text-->
+<!--            ohos:height="match_content"-->
+<!--            ohos:width="match_parent"-->
+<!--            ohos:text="套餐二"-->
+<!--            ohos:text_size="13fp"-->
+<!--            ohos:padding="10vp"/>-->
+<!--        <Text-->
+<!--            ohos:height="match_content"-->
+<!--            ohos:width="match_parent"-->
+<!--            ohos:text="套餐三"-->
+<!--            ohos:text_size="13fp"-->
+<!--            ohos:padding="10vp"/>-->
 
-    </TableLayout>
+<!--    </TableLayout>-->
     <DirectionalLayout
         ohos:height="match_content"
         ohos:width="match_parent"
         ohos:layout_alignment="bottom"
-        ohos:orientation="horizontal">
+        ohos:orientation="horizontal"
+        ohos:alignment="left">
         <Button
             ohos:id="$+id:btn_exit"
             ohos:align_parent_bottom="true"
             ohos:height="match_content"
-            ohos:width="170vp"
-            ohos:layout_alignment="left"
+            ohos:width="190vp"
             ohos:text="返回"
             ohos:text_color="#ffffff"
             ohos:text_size="13fp"
@@ -131,8 +132,7 @@
             ohos:id="$+id:shopcart_add_button"
             ohos:align_parent_bottom="true"
             ohos:height="match_content"
-            ohos:width="170vp"
-            ohos:layout_alignment="right"
+            ohos:width="190vp"
             ohos:text="添加到购物车"
             ohos:text_color="#ffffff"
             ohos:text_size="13fp"

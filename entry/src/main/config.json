@@ -62,17 +62,6 @@
       },
       {
         "name": "com.shop.WelcomeAbility",
-
-        "description": "$string:welcomeability_description",
-        "icon": "$media:icon",
-        "label": "$string:entry_WelcomeAbility",
-        "launchType": "standard",
-        "orientation": "unspecified",
-        "visible": true,
-        "type": "page"
-      },
-      {
-        "name": "com.shop.LoginAbility",
         "skills": [
           {
             "entities": [
@@ -83,6 +72,17 @@
             ]
           }
         ],
+        "description": "$string:welcomeability_description",
+        "icon": "$media:icon",
+        "label": "$string:entry_WelcomeAbility",
+        "launchType": "standard",
+        "orientation": "unspecified",
+        "visible": true,
+        "type": "page"
+      },
+      {
+        "name": "com.shop.LoginAbility",
+
         "description": "$string:loginability_description",
         "icon": "$media:icon",
         "label": "$string:entry_LoginAbility",

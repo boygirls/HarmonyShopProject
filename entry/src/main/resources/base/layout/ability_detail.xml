@@ -55,7 +55,8 @@
                 ohos:text_color="#323427"
                 ohos:text_size="15fp"
                 ohos:top_margin="15vp"
-                ohos:text="【预售】《来年就交给你啦》珍藏画册 限量礼盒版"/>
+                ohos:text="【预售】《来年就交给你啦》珍藏画册 限量礼盒版"
+                ohos:multiple_lines="true"/>
             <Text
                 ohos:id="$+id:tv_good_info_desc"
                 ohos:height="match_content"

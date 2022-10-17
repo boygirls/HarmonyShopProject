@@ -96,6 +96,7 @@ public class DataBaseUtil {
 
         try {
             ResultSet rs = dataAbilityHelper.query(uri2, colums, predicates);
+
             if(rs.getRowCount() > 0){      //表的总数
                 rs.goToFirstRow();
                 value.setId(rs.getInt(0));
@@ -110,11 +111,11 @@ public class DataBaseUtil {
         return value;
     }
 
-    public static int setUser(String userId, String username, String password, String token,Context context){
+    public static int setUser(int userId, String username, String password, String token,Context context){
 
         int i = 0;
         ValuesBucket valuesBucket = new ValuesBucket();
-        valuesBucket.putString("userId",userId);
+        valuesBucket.putString("userId",userId+"");
         valuesBucket.putString("username",username);
         valuesBucket.putString("password",password);
         valuesBucket.putString("token",token);
@@ -131,30 +132,29 @@ public class DataBaseUtil {
     public static int setShoppingCart(Shopcart shopcart,Context context){
 
         int i = 0;
+
         ValuesBucket values = new ValuesBucket();
-        values.putString("cartId", shopcart.getCartId()+"");
-        values.putString("userId", shopcart.getUserId()+"");
+
+        //values.putString("cartId", shopcart.getCartId()+"");
+        values.putString("userId", "1");
         values.putString("token",shopcart.getToken());
         values.putString("productId", shopcart.getProductId());
-        values.putString("skuId", shopcart.getSkuId());
         values.putString("cartNum", shopcart.getCartNum());
-        values.putString("cartTime", shopcart.getCartTime());
         values.putString("productPrice", shopcart.getProductPrice()+"");
-        values.putString("skuProps", shopcart.getSkuProps());
         values.putString("productName", shopcart.getProductName());
         values.putString("productImg", shopcart.getProductImg());
         values.putString("originalPrice", shopcart.getOriginalPrice()+"");
         values.putString("sellPrice", shopcart.getSellPrice()+"");
-        values.putString("skuName", shopcart.getSkuName());
-        values.putString("skuStock", shopcart.getSkuStock()+"");
+
         DataAbilityHelper dataAbilityHelper = DataAbilityHelper.creator(context);
-        try{
+        try {
             i = dataAbilityHelper.insert(uri3,values);
         } catch (DataAbilityRemoteException e) {
             e.printStackTrace();
         }
-        return i;
 
+
+        return i;
     }
 
     public static List<Shopcart> getShoppingCart(int userId,Context context){
@@ -163,33 +163,27 @@ public class DataBaseUtil {
 
         DataAbilityHelper dataAbilityHelper = DataAbilityHelper.creator(context);
 
-        // TODO 改为购物车列表字段
-        String[] colums = {"cartId","userId","token","productId","skuId","cartNum","cartTime","productPrice","skuProps","productName","productImg","originalPrice","sellPrice","skuName","skuStock"};
+        String[] colums = {"cartId","userId","token","productId","cartNum","productPrice","productName","productImg","originalPrice","sellPrice"};
         DataAbilityPredicates predicates = new DataAbilityPredicates();
         predicates.equalTo("userId",userId);//查询条件
 
         try {
             ResultSet rs = dataAbilityHelper.query(uri3, colums, predicates);
+            int a = rs.getRowCount();
             if(rs.getRowCount() > 0){      //表的总数
                 rs.goToFirstRow();
                 for (int i = 0; i < rs.getRowCount();i++){
                     Shopcart shopcart = new Shopcart();
-                    // TODO 填入参数列表
                     shopcart.setCartId(rs.getInt(0));
                     shopcart.setUserId(rs.getInt(1));
                     shopcart.setToken(rs.getString(2));
                     shopcart.setProductId(rs.getString(3));
-                    shopcart.setSkuId(rs.getString(4));
                     shopcart.setCartNum(rs.getString(5));
-                    shopcart.setCartTime(rs.getString(6));
-                    shopcart.setProductPrice(rs.getDouble(7));
-                    shopcart.setSkuProps(rs.getString(8));
-                    shopcart.setProductName(rs.getString(9));
-                    shopcart.setProductImg(rs.getString(10));
-                    shopcart.setOriginalPrice(rs.getDouble(11));
-                    shopcart.setSellPrice(rs.getDouble(12));
-                    shopcart.setSkuName(rs.getString(13));
-                    shopcart.setSkuStock(rs.getInt(14));
+                    shopcart.setProductPrice(rs.getDouble(6));
+                    shopcart.setProductName(rs.getString(8));
+                    shopcart.setProductImg(rs.getString(9));
+                    shopcart.setOriginalPrice(rs.getDouble(10));
+                    shopcart.setSellPrice(rs.getDouble(11));
                     list.add(shopcart);
                     rs.goToNextRow();
                 }

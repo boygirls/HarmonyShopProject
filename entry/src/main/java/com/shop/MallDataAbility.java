@@ -17,7 +17,7 @@ public class MallDataAbility extends Ability {
 
     private static final String MALL_INFO = "mall_info";
     private static final String USER = "user";
-    private static final String SHOPPING_CART = "Shopcart";
+    private static final String SHOPPING_CART = "ShopCart";
 
     private RdbStore rdbStore;
 
@@ -33,26 +33,17 @@ public class MallDataAbility extends Ability {
                     "password text not null, " +
                     "token text not null)");
 
-//            "create table if not exists " + Const.DB_TAB_NAME + " (userId integer primary key autoincrement, "
-//                    + Const.DB_COLUMN_NAME + " text not null, " + Const.DB_COLUMN_AGE + " integer)");
-
-//            rdbStore.executeSql("create table if not exists shoppingCart(userId integer primary key autoincrement, " +
-//                    ")");
-
-            rdbStore.executeSql("create table if not exists ShopCart(cartId integer primary key autoincrement, " +
+            rdbStore.executeSql("create table if not exists ShopCart(" +
+                    "cartId integer primary key autoincrement, " +
                     "userId text not null, " +
-                    "token text not null"+
-                    "productId text null , " +
-                    "skuId text not null, " +
+                    "token text not null, " +
+                    "productId text not null, " +
                     "cartNum text not null, " +
                     "productPrice text not null, " +
-                    "skuProps text not null, " +
                     "productName text not null, " +
                     "productImg text not null, " +
                     "originalPrice text not null, " +
-                    "sellPrice text not null, " +
-                    "skuName text not null, " +
-                    "skuStock text not null)");
+                    "sellPrice text not null)");
         }
 
         public void onUpgrade(RdbStore rdbStore, int i, int i1) {
@@ -118,8 +109,6 @@ public class MallDataAbility extends Ability {
         }else if (SHOPPING_CART.equals(lastPath)) {
 
             int index = (int) rdbStore.insert(SHOPPING_CART, value);
-
-            DataAbilityHelper.creator(this).notifyChange(uri);
 
             return index;
         }

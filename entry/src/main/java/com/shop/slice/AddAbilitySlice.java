@@ -1,6 +1,5 @@
 package com.shop.slice;
 
-import com.google.gson.Gson;
 import com.shop.ResourceTable;
 import com.shop.home.model.ResultBeanData;
 import com.shop.home.model.Shopcart;
@@ -19,8 +18,7 @@ import ohos.hiviewdfx.HiLogLabel;
 
 public class AddAbilitySlice extends AbilitySlice {
 
-    private Gson gson = new Gson();
-
+//    private Gson gson = new Gson();
 //    String selectSkuId = "";//用来记录选择套餐的id
 //    double selectSkuPrice = 0.0;//用来记录选择套餐的价格
 
@@ -36,7 +34,6 @@ public class AddAbilitySlice extends AbilitySlice {
 //        String productId = (String) intent.getParams().getParam("productId");
 
         product = (ResultBeanData.ResultBean.HotInfoBean) intent.getParams().getParam("product");
-
         HiLog.info(LABEL, "" + product);
 
         initPage();
@@ -61,27 +58,33 @@ public class AddAbilitySlice extends AbilitySlice {
         btn1.setClickedListener(listener);
         btn2.setClickedListener(listener);
 
+        //返回按钮
+        Button exitbtn = (Button) findComponentById(ResourceTable.Id_btn_exit);
+        exitbtn.setClickedListener(component -> {
+
+            present(new DetailAbilitySlice(),intent);
+
+        });
+
+        //添加购物车按钮
         Button addBtn = (Button) findComponentById(ResourceTable.Id_shopcart_add_button);
         addBtn.setClickedListener(component -> {
 
             //收集数据
-//            User user1 = new User();
-//            user1.setId(1);
-//            user1.setToken("123");
-//            User token = DataBaseUtil.getUser(user1,this);
-//            User userId = DataBaseUtil.getUser(user1,this);
             String num = numText.getText();
             double price = Double.parseDouble(product.getCover_price());
+            int userId = Integer.parseInt(DataBaseUtil.getValue("userId", this));
+            String token = DataBaseUtil.getValue("token", this);
 
             Shopcart shopcart = new Shopcart();
-            shopcart.setUserId(1);
+            shopcart.setUserId(userId);
             shopcart.setProductId(product.getProduct_id());
             shopcart.setProductName(product.getName());
             shopcart.setProductImg(Constants.BASE_URl_IMAGE + product.getFigure());
             shopcart.setCartNum(num);
-            shopcart.setCartId(1);
+//            shopcart.setCartId(1);
             shopcart.setProductPrice(price);
-
+            shopcart.setToken(token);
             // TODO 购物车剩余参数
 
             // 将数据存入表
@@ -123,11 +126,11 @@ public class AddAbilitySlice extends AbilitySlice {
      * 初始化页面
      */
     private void initPage() {
-        Text price = (Text) findComponentById(ResourceTable.Id_tv_good_info_price);
-        Text name = (Text) findComponentById(ResourceTable.Id_tv_good_info_name);
-        Image img = (Image) findComponentById(ResourceTable.Id_tv_good_info_img);
+        Text price = (Text) findComponentById(ResourceTable.Id_product_detail_price);
+        Text name = (Text) findComponentById(ResourceTable.Id_tv_add_info_name);
+        Image img = (Image) findComponentById(ResourceTable.Id_tv_add_info_img);
 
-        price.setText(product.getCover_price());
+        price.setText("￥"+product.getCover_price());
         name.setText(product.getName());
         String src = Constants.BASE_URl_IMAGE + product.getFigure();
         LoadUrlImageUtils.loadImage(this, src, img);

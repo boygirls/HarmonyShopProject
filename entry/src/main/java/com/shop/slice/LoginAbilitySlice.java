@@ -14,8 +14,6 @@ public class LoginAbilitySlice extends AbilitySlice {
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_ability_login);
-
-
     }
 
     @Override
@@ -23,7 +21,7 @@ public class LoginAbilitySlice extends AbilitySlice {
         super.onActive();
 
         if(DataBaseUtil.getUser1("userId",this) == 0 ){
-            DataBaseUtil.setUser("1","wy","123456","123",this);
+            DataBaseUtil.setUser(1,"wy","123456","123",this);
         }
 
         TextField tf1 = (TextField) findComponentById(ResourceTable.Id_login_username);
@@ -31,25 +29,26 @@ public class LoginAbilitySlice extends AbilitySlice {
         Button submitBtn = (Button) findComponentById(ResourceTable.Id_login_btn);
         submitBtn.setClickedListener(component -> {
 
-
             User user1 = new User();
+            user1.setId(1);
             user1.setUsername("wy");
             user1.setPassword("123456");
+            user1.setToken("123");
             //String username = DataBaseUtil.getUser("1",this);
             User user = DataBaseUtil.getUser(user1,this);
 
-
             if(tf1.getText().equals( user.getUsername()) && tf2.getText().equals(user.getPassword())){
 
+                DataBaseUtil.setValue("userId",user1.getId()+"",this);
+                DataBaseUtil.setValue("token",user1.getToken(),this);
 
                 present(new TabListSlice(),new Intent());
             } else {
-                    new ToastDialog(this).setText("账号或密码错误").show();
+                    new ToastDialog(this).setText("用户名或密码错误").show();
                 }
             });
 
 //            TaskDispatcher globalTaskDispatcher = getGlobalTaskDispatcher(TaskPriority.DEFAULT);
-            //TODO 本地数据库访问。
 //            globalTaskDispatcher.asyncDispatch(()->{
 //                //点击登录按钮，将账号和密码提交到用户认证接口
 //                String urlString = "dataability:///com.shop.MallDataAbility/user?username="+tf1.getText()+"&password="+tf2.getText();
