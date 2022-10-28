@@ -3,7 +3,7 @@
     xmlns:ohos="http://schemas.huawei.com/res/ohos"  ohos:shape="rectangle">
 
     <stroke
-        ohos:width="1vp"
+        ohos:width="0.5vp"
         ohos:color="#FF888585"/>
 
 </shape>

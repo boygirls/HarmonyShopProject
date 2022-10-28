@@ -75,6 +75,10 @@
     {
       "name": "entry_AddAbility",
       "value": "entry_AddAbility"
+    },
+    {
+      "name": "hmsmessageserviceability_description",
+      "value": "hap sample empty service"
     }
   ]
 }

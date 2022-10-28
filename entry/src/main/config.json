@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.shop",
+    "bundleName": "com.shop.x",
     "vendor": "example",
     "version": {
       "code": 1000000,
@@ -16,9 +16,9 @@
     }
   },
   "module": {
-    "package": "com.shop",
+    "package": "com.shop.x",
     "name": ".MyApplication",
-    "mainAbility": "com.shop.TabList",
+    "mainAbility": "com.shop.x.TabList",
     "reqPermissions": [
       {
         "name": "ohos.permission.GET_NETWORK_INFO"
@@ -27,7 +27,14 @@
         "name": "ohos.permission.SET_NETWORK_INFO"
       },
       {
-        "name": "ohos.permission.INTERNET"
+        "name": "ohos.permission.INTERNET",
+        "reason": "access internet",
+        "usedScene": {
+          "ability": [
+            "com.shop.x.LoginAbility"
+          ],
+          "when": "always"
+        }
       }
     ],
     "deviceType": [
@@ -41,7 +48,7 @@
     },
     "abilities": [
       {
-        "name": "com.shop.TabList",
+        "name": "com.shop.x.TabList",
         "description": "$string:tablist_description",
         "icon": "$media:icon",
         "label": "$string:entry_TabList",
@@ -51,17 +58,7 @@
         "type": "page"
       },
       {
-        "name": "com.shop.user.UserAbility",
-        "description": "$string:userability_description",
-        "icon": "$media:icon",
-        "label": "$string:entry_UserAbility",
-        "launchType": "standard",
-        "orientation": "unspecified",
-        "visible": true,
-        "type": "page"
-      },
-      {
-        "name": "com.shop.WelcomeAbility",
+        "name": "com.shop.x.WelcomeAbility",
         "skills": [
           {
             "entities": [
@@ -81,8 +78,7 @@
         "type": "page"
       },
       {
-        "name": "com.shop.LoginAbility",
-
+        "name": "com.shop.x.LoginAbility",
         "description": "$string:loginability_description",
         "icon": "$media:icon",
         "label": "$string:entry_LoginAbility",
@@ -92,14 +88,14 @@
         "type": "page"
       },
       {
-        "name": "com.shop.MallDataAbility",
+        "name": "com.shop.x.MallDataAbility",
         "description": "$string:malldataability_description",
         "type": "data",
         "uri": "dataability://com.shop.MallDataAbility",
         "icon": "$media:icon"
       },
       {
-        "name": "com.shop.AddAbility",
+        "name": "com.shop.x.AddAbility",
         "description": "$string:addability_description",
         "icon": "$media:icon",
         "label": "$string:entry_AddAbility",
@@ -107,6 +103,20 @@
         "orientation": "unspecified",
         "visible": true,
         "type": "page"
+      },
+      {
+        "skills": [
+          {
+            "actions": [
+              "com.huawei.push.action.MESSAGING_EVENT"
+            ]
+          }
+        ],
+        "name": "com.shop.x.push.HmsMessageServiceAbility",
+        "description": "$string:hmsmessageserviceability_description",
+        "type": "service",
+        "backgroundModes": [],
+        "icon": "$media:icon"
       }
     ],
     "metaData": {
@@ -114,6 +124,10 @@
         {
           "name": "hwc-theme",
           "value": "androidhwext:style/Theme.Emui.Light.NoTitleBar"
+        },
+        {
+          "name": "com.huawei.hms.client.appid",
+          "value": "107244179"
         }
       ]
     },

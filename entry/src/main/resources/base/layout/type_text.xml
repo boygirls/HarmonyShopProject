@@ -5,14 +5,12 @@
     ohos:width="match_parent"
     ohos:orientation="vertical"
     ohos:alignment="center"
-    ohos:top_margin="3vp"
-    ohos:bottom_margin="1vp"
     ohos:background_element="$graphic:type_background">
     <Text
         ohos:id="$+id:item_index"
         ohos:height="match_content"
         ohos:width="match_parent"
-        ohos:padding="4vp"
+        ohos:padding="1vp"
         ohos:text="Item0"
         ohos:text_size="18fp"
         ohos:text_color="#FF030303"

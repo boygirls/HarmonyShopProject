@@ -24,21 +24,40 @@
             ohos:background_element="white"
             >
 
-            <Button
+            <Image
+                ohos:id="$+id:btn_image"
                 ohos:height="50vp"
                 ohos:width="50vp"
                 ohos:center_in_parent="true"
-                ohos:align_parent_right="true"
-                ohos:background_element="$media:taobao"/>
+                ohos:align_parent_right="true"/>
             <Text
-                ohos:id="$+id:tv_username"
+                ohos:id="$+id:btn_hwid_sign_in"
                 ohos:height="match_content"
                 ohos:width="match_content"
                 ohos:align_right="true"
-                ohos:text="登录/注册"
+                ohos:text="用户名"
                 ohos:top_margin="130vp"
                 ohos:text_color="black"
-                ohos:horizontal_center="true"/>
+                ohos:text_size="25fp"
+                ohos:horizontal_center="true"
+                ohos:visibility="hide"/>
+            <Button
+                ohos:id="$+id:user_hwid_sign_ins"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:background_element="$graphic:capsule_button_element"
+                ohos:min_width="200vp"
+                ohos:top_margin="5vp"
+                ohos:align_right="true"
+                ohos:right_padding="16vp"
+                ohos:left_padding="16vp"
+                ohos:padding="2vp"
+                ohos:text="Sign in with HUAWEI ID"
+                ohos:text_size="20fp"
+                ohos:text_color="#ffffff"
+                ohos:horizontal_center="true"
+                ohos:align_parent_bottom="true"
+                ohos:element_left="$media:hw_24x24_logo_white"/>
 
         </DependentLayout>
 
